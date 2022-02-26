@@ -37,7 +37,7 @@ class ProdukController extends Controller
         if($filterKeyword){
             $data['produk'] = produk::where('nama_produk','LIKE', "%$filterKeyword%");
         }
-        return view('produk.index', $data);
+        return view('produk/index', $data);
     }
 
     /**
