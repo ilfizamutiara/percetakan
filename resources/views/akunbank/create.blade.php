@@ -15,6 +15,13 @@
                 <div class="card-header">
                 <div class="card-body">
                 <div class="col-6 mt-3">
+                <div class="col-6 mt-3">
+                    <input type="hidden" class="form-control @error('id_rek') is-invalid @enderror" id="id_rek" 
+                    name="id_rek" value="{{old('id_rek')}}">
+                    @error('id_rek')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
+                </div>
                     <label for="id_bank" >Bank</label>
                     <select name="id_bank" class="form-control">
                         @foreach($bank as $bn)

@@ -15,13 +15,6 @@
                 <div class="card-header">
                 <div class="card-body">
                 <div class="col-6 mt-3">
-                    <input type="hidden" class="form-control @error('id_rek') is-invalid @enderror" id="id_rek" 
-                    name="id_rek" value="{{old('id_rek')}}">
-                    @error('id_rek')
-                        <div class="invalid-feedback">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="col-6 mt-3">
                     <input type="hidden" class="form-control @error('id_percetakan') is-invalid @enderror" id="id_percetakan" 
                     name="id_percetakan" value="{{Auth::user()->id}}">
                     @error('id_percetakan')
