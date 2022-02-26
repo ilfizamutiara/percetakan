@@ -217,12 +217,12 @@
                       @endforeach
                       </select>
                     </div>
-                    <div class="col-12 mb-3">
+                    <!-- <div class="col-12 mb-3">
                       <label for="" >Layanan</label>
                       <select name="ongkir" class="form-control" id="ongkir"  selected="selected">
                         <option value="">--- pilih ---</option>
                       </select>
-                    </div> 
+                    </div>  -->
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary col-12 ">Lanjut</button> 
@@ -277,7 +277,6 @@
             </div>
           </div>
         </div>
-<--/.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -346,27 +345,62 @@
         
 <script src="{{url('/plugins/select2/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
-      $('#province').on('change',function(){
-        let province = $("#province").val()
-        $("#city").children().remove()
-        $("#city").val('');
-        $("#city").append(`<option value="">--- Pilih ---</option>`); 
-        $("#city").prop('disabled',true)
-        if(province!='' && province!=null){
-          $.ajax({
-            url:"/getProvince/"+province,
-              success:function(res){
-              $("#city").prop('disabled',false)
-              let tampilan_option = '';
-              $.each(res,function(index,data){
-                tampilan_option+=`<option value="${data.id_city}">${data.city_name}</option>`
-              })
-              $("#city").append(tampilan_option)
+  // $('select[name="kurir"]').on('change', function(){
+  //   // kita buat variable untuk menampung data data dari  inputan
+  //   // name city_origin di dapat dari input text name city_origin
+  //   let origin = 421;
+  //   // name kota_id di dapat dari select text name kota_id
+  //   let destination = {{$user->id_city}};
+  //   console.log(destination);
+  //   // name kurir di dapat dari select text name kurir
+  //   let courier = $("select[name=kurir]").val();
+  //   // name weight di dapat dari select text name weight
+  //   let weight = $("input[name=weight]").val();
+  //   // alert(courier);
+  //   if(courier){
+  //     jQuery.ajax({
+  //       url:"/origin="+origin+"&destination="+destination+"&weight="+weight+"&courier="+courier,
+  //       type:'GET',
+  //       dataType:'json',
+  //       success:function(data){
+  //         $('select[name="ongkir"]').empty();
+  //         // ini untuk looping data result nya
+  //         $.each(data, function(key, value){
+  //         // ini looping data layanan misal jne reg, jne oke, jne yes
+  //           $.each(value.costs, function(key1, value1){
+  //           // ini untuk looping cost nya masing masing
+  //           // silahkan pelajari cara menampilkan data json agar lebi paham
+  //             $.each(value1.cost, function(key2, value2){
+  //               $('select[name="ongkir"]').append('<option value="'+ key +'">' + value1.service + '-' + value1.description + '-' +value2.value+ '</option>');
+  //               });
+  //             });
+  //           });
+  //       }
+  //     });
+  //   } else {
+  //     $('select[name="ongkir"]').empty();
+  // }
+      // $('#province').on('change',function(){
+      //   let province = $("#province").val()
+      //   $("#city").children().remove()
+      //   $("#city").val('');
+      //   $("#city").append(`<option value="">--- Pilih ---</option>`); 
+      //   $("#city").prop('disabled',true)
+      //   if(province!='' && province!=null){
+      //     $.ajax({
+      //       url:"/getProvince/"+province,
+      //         success:function(res){
+      //         $("#city").prop('disabled',false)
+      //         let tampilan_option = '';
+      //         $.each(res,function(index,data){
+      //           tampilan_option+=`<option value="${data.id_city}">${data.city_name}</option>`
+      //         })
+      //         $("#city").append(tampilan_option)
 
-            }
-          });
-        } 
-      });
+      //       }
+      //     });
+      //   } 
+      // });
     // $('#kurir').on('change',function(){
     //     var kurir = $('#kurir').val();
     //     // console.log(kurir);

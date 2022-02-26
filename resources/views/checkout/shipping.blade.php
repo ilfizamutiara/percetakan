@@ -29,12 +29,12 @@
                             </div>
                             <div class="card-body">
                                 <p>Nama : {{$pelanggan->nama}} <br> No HP : {{$pelanggan->no_hp}} <br> Alamat : {{$pelanggan->alamat}} <br>
-                                {{$x->city_name}}, {{$x->name}},{{$x->kode_pos}}</p>
+                                {{$user->city_name}}, {{$user->name}},{{$user->kode_pos}}</p>
                             </div>
                         </div>
                         <div class="card card-solid  ml-2">
                             <div class="card-header">
-                                <h3><strong>Pengiriman </strong></h3>
+                                <h3><strong>Pengiriman Pengiriman ({{$kurirPengiriman}})</strong></h3>
                                 <!-- ({{$kurirPengiriman}}) -->
                             </div>
                             <div class="card-body">

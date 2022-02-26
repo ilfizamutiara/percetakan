@@ -146,6 +146,7 @@ Route::get('checkout/pengiriman/', 'App\Http\Controllers\DashboardController@pen
 Route::get('getProvince/{id_province}', function($id_province){
     $city = App\Models\City::where('id_province',$id_province)->get();
     return response()->json($city);
+Route::get('/origin={city_origin}&destination={city_destination}&weight={weight}&courier={courier}','CheckoutController@get_ongkir');
 });
 // Route::get('getKurir/{id_province}', function(){
 //     return response()->json($city);

@@ -284,6 +284,7 @@ class DashboardController extends Controller
         $kurir = kurir::all();
         $city = City::get();
         
+        
         return view('checkout.pengiriman',compact('keranjang','pelanggan','user','kurir','province','city','produk'));
     }
 
@@ -375,11 +376,11 @@ class DashboardController extends Controller
         $kurir = kurir::all();
         $title = "Check Shipping Result";
         $client = new Client();
-        // $user = User::select('users.id','users.id_city','users.id_province','kota.city_name','province.name','kode_pos')
-        //             ->join('kota','users.id_city','kota.id_city')
-        //             ->join('province','kota.id_province','province.id_province')
-        //             ->where('users.id',Auth::User()->id)
-        //             ->first();
+        $user = User::select('users.id','users.id_city','users.id_province','kota.city_name','province.name','kode_pos')
+                    ->join('kota','users.id_city','kota.id_city')
+                    ->join('province','kota.id_province','province.id_province')
+                    ->where('users.id',Auth::User()->id)
+                    ->first();
         $produk = produk::all();
         $keranjang = Keranjang::select('id_keranjang','pelanggan.id_pelanggan','keranjang.id_percetakan','keranjang.id_produk',
                             'percetakan.nama_toko','produk.gambar','produk.nama_produk','produk.berat','produk.harga','jumlah','ukuran','total')
@@ -402,31 +403,17 @@ class DashboardController extends Controller
         $pajak = $total*$adminFree->persentase/100;
 
         // return $pajak;
-        $user = User::where('id',Auth::user()->id)->update([
-            'id_province' => $request->id_province,
-            'id_city' => $request->id_city,
-            'kode_pos' => $request->kode_pos,
-        ]);
-        $pelanggan = pelanggan::where('id_user',Auth::user()->id)->update([
-                    'nama' => $request->nama,
-                    'alamat' => $request->alamat,
-                    'no_hp' => $request->no_hp,
-                    // 'foto' => $fileName,
-        ]);
-        if($user){
-            $x = User::select('users.id','users.id_city','users.id_province','kota.city_name','province.name','kode_pos')
+
+        $pelanggan = pelanggan::select('id_pelanggan','nama','no_hp','alamat')
+                            ->where('id_user',Auth::User()->id)
+                            ->first();
+        $user = User::select('users.id','users.id_city','users.id_province','kota.city_name','province.name','kode_pos')
                             ->join('kota','users.id_city','kota.id_city')
                             ->join('province','kota.id_province','province.id_province')
                             ->where('users.id',Auth::User()->id)
                             ->first();
-        }
-        $pelanggan = pelanggan::select('id_pelanggan','nama','no_hp','alamat')
-                            ->where('id_user',Auth::User()->id)
-                            ->first();
-        
-        $met_bayar = AkunBank::select('id_rek','id_user','rekening.id_bank','no_rek','nama_bank','nama_pemilik')
+        $met_bayar = AkunBank::select('id_rek','rekening.id_bank','no_rek','nama_bank','nama_pemilik')
                             ->join('bank','rekening.id_bank','bank.id_bank')
-                            ->where('id_user',1)
                             ->get();
         
         $jmlToko = DB::table('keranjang')
@@ -434,16 +421,15 @@ class DashboardController extends Controller
                 ->where('id_user',Auth::User()->id)
                 ->distinct()
                 ->count('id_percetakan');
-        // return $user; 
 
         try{
             $response = $client->request('POST','https://api.rajaongkir.com/starter/cost',
                 [
                     
                     'body' => 'origin=421'.
-                              '&destination='.$x->id_city.
+                              '&destination='.$user->id_city.
                               '&weight='.$weight.
-                              '&courier=jne',
+                              '&courier='.$request->kurir,
                     'headers' => [
                         'key' => 'e015ed84d801e0a8bef8a683b5ba0100',
                         'content-type' => 'application/x-www-form-urlencoded',
@@ -464,10 +450,12 @@ class DashboardController extends Controller
 
 
         // return $value;
-        return view('checkout/shipping',compact('title','keranjang','x','kurirPengiriman','pelanggan','province','city','d','adminFree','met_bayar','jmlToko'));
+        return view('checkout/shipping',compact('title','origin','destination','met_bayar','kurirPengiriman',
+                    'array_result','user','pelanggan','keranjang','province','city','d','adminFree', 'jmlToko'));
         // print_r( $array_result);
         // echo $array_result["rajaongkir"]["results"][0]["costs"][1]["cost"][0]["value"];
     }
+
 
     public function order(Request $request){
         date_default_timezone_set("Asia/Jakarta");

@@ -41,6 +41,7 @@ class CheckoutController extends Controller
         return view('checkout.index',compact('pelanggan','user','province','city','produk','keranjang'));
 
     }
+
     public function update(Request $request){
 
 
@@ -57,5 +58,41 @@ class CheckoutController extends Controller
         ]);
         // return $user;
         return redirect('/checkout/pengiriman');
+    }
+
+    public function get_ongkir($origin, $destination, $weight, $courier){
+        $kota = User::select('users.id','users.id_city','users.id_province','kota.city_name','province.name','kode_pos')
+                            ->join('kota','users.id_city','kota.id_city')
+                            ->join('province','kota.id_province','province.id_province')
+                            ->where('users.id',Auth::User()->id)
+                            ->first();
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "origin=$origin&destination=$destination&weight=$weight&courier=$courier",
+        CURLOPT_HTTPHEADER => array(
+        "content-type: application/x-www-form-urlencoded",
+        "key: e015ed84d801e0a8bef8a683b5ba0100"
+        ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        if ($err) {
+            echo "cURL Error #:" . $err;
+            } 
+            else {
+                $response=json_decode($response,true);
+                $data_ongkir = $response['rajaongkir']['results'];
+                return json_encode($data_ongkir);
+            }
+        return view('checkout/shipping',compact('kota'));
+
     }
 }
