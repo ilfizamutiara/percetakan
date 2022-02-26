@@ -219,28 +219,29 @@
                               <div class="invalid-feedback">{{$message}}</div>
                           @enderror
                       </div>
-                      <div class="col-12 mb-3">
-                        <label for="id_province" >Provinsi</label>
-                          <select name="id_province" id="id_province" class="form-control">
-                            <option value="">-- Pilih --</option>
-                            @foreach($province as $prov)
-                                <option value="{{$prov->id_province}}" @if($prov->id_province == $user->id_province) selected @endif>
-                                  {{$prov->name}}
-                                </option>
-                            @endforeach
-                          </select>
-                      </div>
-                        <div class="col-12 mb-3">
-                          <label for="id_city" >Kota</label>
-                          <select name="id_city" class="form-control" id="id_city" >
-                            <option value="">--- pilih ---</option>
-                            @foreach($city as $kota)
-                                <option value="{{$kota->id_province}}" @if($kota->id_city == $user->id_city) selected @endif>
-                                  {{$kota->city_name}}
-                                </option>
-                            @endforeach
-                          </select>
-                        </div>
+                                <label for="id_province" class="col-sm-3 col-form-label">Provinsi</label>
+                                <div class="col-sm-12">
+                                    <select name="id_province" class="form-control">
+                                    <option value="">-- Pilih --</option>
+                                    @foreach($province as $prov)
+                                        <option value="{{$prov->id_province}}" @if($prov->id_province == $user->id_province) selected @endif >
+                                            {{$prov->name}}
+                                        </option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                <label for="id_city" class="col-sm-3 col-form-label">Kota</label>
+                                <div class="col-sm-12">
+                                    <select name="id_city" class="form-control">
+                                    <option value="">--- pilih ---</option>
+                                    @foreach($city as $kota)
+                                        <option value="{{$kota->id_city}}" @if($kota->id_city == $user->id_city) selected @endif>
+                                        {{$kota->city_name}}
+                                        </option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            
                         <div class="col-12 mb-3">
                         <label for="kode_pos" >Kode Pos</label>
                           <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" id="kode_pos" 

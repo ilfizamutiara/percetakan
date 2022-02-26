@@ -202,80 +202,31 @@
                       {{$user->city_name}}, {{$user->name}},{{$user->kode_pos}}</p>
                     </div>
                   </div>
-                  <!-- <form method="POST" action="{{ url('checkout/pengiriman') }}" align="left" enctype="multipart/form-data">
+                  <div class="card card-solid mt-3 ml-2">
+                  <form method="POST" action="{{ url('checkout/pengiriman') }}" align="left" enctype="multipart/form-data">
                     @csrf
-                      <div class="col-12 mb-3">
-                        <label for="nama">Nama</label>
-                          <input  class="form-control @error('nama') is-invalid @enderror" id="nama" 
-                          name="nama" value="{{$pelanggan->nama}}">
-                          @error('nama')
-                            <div class="invalid-feedback">{{$message}}</div>
-                          @enderror
-                      </div>
-                      <div class="col-12 mb-3">
-                        <label for="no_hp">No HP</label>
-                          <input  class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" 
-                          name="no_hp" value="{{$pelanggan->no_hp}}">
-                          @error('no_hp')
-                            <div class="invalid-feedback">{{$message}}</div>
-                          @enderror
-                      </div>
-                      <div class="col-12 mb-3">
-                        <label for="alamat" >Alamat</label>
-                          <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" 
-                          name="alamat" value="{{$pelanggan->alamat}}">
-                          @error('alamat')
-                              <div class="invalid-feedback">{{$message}}</div>
-                          @enderror
-                      </div>
-                      <div class="col-12 mb-3">
-                        <label for="id_province" >Provinsi</label>
-                          <select name="id_province" id="province" class="form-control">
-                            <option value="">-- Pilih --</option>
-                            @foreach($province as $prov)
-                                <option value="{{$prov->id_province}}" @if($prov->id_province == $user->id_province) selected @endif>
-                                  {{$prov->name}}
-                                </option>
-                            @endforeach
-                          </select>
-                      </div>
-                        <div class="col-12 mb-3">
-                          <label for="id_city" >Kota</label>
-                          <select name="id_city" class="form-control" id="city" >
-                            <option value="">--- pilih ---</option>
-                            @foreach($city as $kota)
-                                <option value="{{$kota->id_province}}" @if($kota->id_city == $user->id_city) selected @endif>
-                                  {{$kota->city_name}}
-                                </option>
-                            @endforeach
-                          </select>
-                        </div>
-                        <div class="col-12 mb-3">
-                        <label for="kode_pos" >Kode Pos</label>
-                          <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" id="kode_pos" 
-                          name="kode_pos" value="{{$user->kode_pos}}">
-                          @error('kode_pos')
-                            <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div> -->
-                        <!-- <div class="col-12 mb-3">
-                          <label for="courier" >Kurir</label>
-                            <select name="kurir" id="kurir" class="form-control">
-                              @foreach($kurir as $k)
-                              <option value="{{$k->kurir}}">{{$k->kurir}}</option>
-                              @endforeach
-                            </select>
-                        </div> -->
-                        <!-- <div class="col-12 mb-3">
-                          <label for="" >Layanan</label>
-                          <select name="ongkir" class="form-control" id="ongkir"  selected="selected">
-                          <option value="">--- pilih ---</option>
-                          </select>
-                        </div> 
-                      <button type="submit" class="btn btn-primary col-12 ">Lanjut</button> 
-                  </form>-->
+                    <div class="card-header" style="background-color:#009688 ">
+                      <h4 style="color:#ffff"><strong>Pengiriman</strong></h4>
+                    </div>
+                    <div class="card-body">
+                    <div class="col-12 mb-3">
+                      <label for="courier" >Kurir</label>
+                      <select name="kurir" id="kurir" class="form-control">
+                      @foreach($kurir as $k)
+                        <option value="{{$k->kurir}}">{{$k->kurir}}</option>
+                      @endforeach
+                      </select>
+                    </div>
+                    <div class="col-12 mb-3">
+                      <label for="" >Layanan</label>
+                      <select name="ongkir" class="form-control" id="ongkir"  selected="selected">
+                        <option value="">--- pilih ---</option>
+                      </select>
+                    </div> 
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary col-12 ">Lanjut</button> 
+                    </form><br>
                 </div>
                 <div class="col-6 ">
                 <form method="POST" action="#" align="left" >
@@ -326,7 +277,7 @@
             </div>
           </div>
         </div>
-        <!-- /.row -->
+<--/.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
