@@ -51,6 +51,7 @@ class AkunBankController extends Controller
                         ->first();
                         
         $akun = AkunBank::create([
+            'id_rek' => $request['id_rek'],
             'id_user' => $user->id,
             'id_bank' => $request['id_bank'],
             'no_rek' => $request['no_rek'],
