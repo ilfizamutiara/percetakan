@@ -22,7 +22,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', function (Request $request) {
     $filterKeyword = $request->keyword;
-    $produk= produk::select('id_produk','nama_toko','satuan','nama_produk','harga','keterangan','gambar')
+    $produk= Produk::select('id_produk','nama_toko','satuan','nama_produk','harga','keterangan','gambar')
                             ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
                             ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
                             ->where('nama_produk','like',"%".$filterKeyword."%")
@@ -146,7 +146,6 @@ Route::get('checkout/pengiriman/', 'App\Http\Controllers\DashboardController@pen
 Route::get('getProvince/{id_province}', function($id_province){
     $city = App\Models\City::where('id_province',$id_province)->get();
     return response()->json($city);
-Route::get('/origin={city_origin}&destination={city_destination}&weight={weight}&courier={courier}','CheckoutController@get_ongkir');
 });
 // Route::get('getKurir/{id_province}', function(){
 //     return response()->json($city);
