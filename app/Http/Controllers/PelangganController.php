@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Pelanggan;
+use App\Models\pelanggan;
 
 class PelangganController extends Controller
 {
@@ -15,7 +15,7 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $pelanggan = Pelanggan::select('nama','email','jenis_kelamin','alamat','no_hp','foto')
+        $pelanggan = pelanggan::select('nama','email','jenis_kelamin','alamat','no_hp','foto')
             ->join('users','pelanggan.id_user','users.id')
             ->get();
         return view('pelanggan.index',['pelanggan' => $pelanggan]);
