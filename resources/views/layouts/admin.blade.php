@@ -19,9 +19,13 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="{{url('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{url('plugins/jqvmap/jqvmap.min.css')}}">
+      <!-- JQVMap -->
+      <link rel="stylesheet" href="{{ asset('adminlte/plugins/jqvmap/jqvmap.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{url('plugins/jqvmap/jqvmap.min.css')}}"> -->
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}">
+  <!-- <link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}"> -->
   <!-- Bootstrap Material Design style -->
   <!-- <link rel="stylesheet" href="{{url('dist/css/bootstrap-material-design.min.css')}}"> -->
   <!-- overlayScrollbars -->

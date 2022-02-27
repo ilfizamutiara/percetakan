@@ -402,7 +402,7 @@ class DashboardController extends Controller
 
         // return $pajak;
 
-        $pelanggan = pelanggan::select('id_pelanggan','nama','no_hp','alamat')
+        $pelanggan = Pelanggan::select('id_pelanggan','nama','no_hp','alamat')
                             ->where('id_user',Auth::User()->id)
                             ->first();
         $user = User::select('users.id','users.id_city','users.id_province','kota.city_name','province.name','kode_pos')

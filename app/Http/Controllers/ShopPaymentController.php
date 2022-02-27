@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\ShopPayment;
-use App\Models\Percetakan;
+use App\Models\percetakan;
 use App\Models\AkunBank;
 use App\Models\Order;
 use App\Models\DetailOrder;
@@ -15,7 +15,7 @@ class ShopPaymentController extends Controller
 {
     public function index()
     {
-        $percetakan = Percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
+        $percetakan = percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->join('rekening','users.id','rekening.id_user')
                                 ->join('bank','rekening.id_bank','bank.id_bank')                            
@@ -205,7 +205,7 @@ class ShopPaymentController extends Controller
 
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
-        $percetakan = Percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko',
+        $percetakan = percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko',
                                     'no_rek','nama_pemilik')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->join('rekening','users.id','rekening.id_user')
@@ -264,7 +264,7 @@ class ShopPaymentController extends Controller
                                 ->where('id_status_pesanan',5)
                                 ->whereBetween('pesanan.created_at', [$tgl1, $tgl2])
                                 ->get(); 
-        $toko = Percetakan::findOrFail($id_percetakan);
+        $toko = percetakan::findOrFail($id_percetakan);
         $percetakan = percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->join('rekening','users.id','rekening.id_user')
