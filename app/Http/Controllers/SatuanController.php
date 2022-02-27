@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Satuan_Produk;
-use App\models\Produk;
+use App\models\satuan_produk;
+use App\models\produk;
 use Validator;
 
 class SatuanController extends Controller
@@ -16,7 +16,7 @@ class SatuanController extends Controller
      */
     public function index()
     {
-        $satuan = Satuan_Produk::all();
+        $satuan = satuan_produk::all();
         return view('satuanproduk.index',['satuan' => $satuan]); 
     }
 
@@ -27,7 +27,7 @@ class SatuanController extends Controller
      */
     public function create()
     {
-        $satuan = Satuan_Produk::all();
+        $satuan = satuan_produk::all();
         return view('satuanproduk.create', compact('satuan'))->with('Status','Data berhasil ditambahkan!');
     }
 
@@ -49,7 +49,7 @@ class SatuanController extends Controller
 
     public function edit($id_satuan_produk)
     {
-        $satuan = Satuan_Produk::findOrFail($id_satuan_produk);
+        $satuan = satuan_produk::findOrFail($id_satuan_produk);
         return view("satuanproduk.edit", compact('satuan'))->with("satuan", $satuan);
     }
 
@@ -62,7 +62,7 @@ class SatuanController extends Controller
      */
     public function update(Request $request, $id_satuan_produk)
     {
-        $satuan = Satuan_Produk::find($id_satuan_produk);
+        $satuan = satuan_produk::find($id_satuan_produk);
         $satuan->satuan = $request->satuan;
         $satuan->update();
         return redirect('/satuanproduk')-> with('status', 'Data Satuan berhasil diupdate!');
@@ -76,11 +76,11 @@ class SatuanController extends Controller
      */
     public function destroy($id_satuan_produk)
     {
-        $cek = Produk::select('satuan_produk')
+        $cek = produk::select('satuan_produk')
                           ->where('id_satuan_produk','=',$id_satuan_produk)
                           ->count();
         if($cek==0){
-            $satuan = Satuan_Produk::find($id_satuan_produk);
+            $satuan = satuan_produk::find($id_satuan_produk);
             $satuan->delete();
             return redirect('/satuanproduk')-> with('status', 'Data Satuan berhasil dihapus!');
         }

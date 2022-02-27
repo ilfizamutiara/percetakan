@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Percetakan;
-use App\Models\Pelanggan;
+use App\Models\percetakan;
+use App\Models\pelanggan;
 use App\Models\Order;
 
 class DashboardAdminController extends Controller
@@ -26,9 +26,9 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        $percetakan = Percetakan::all()
+        $percetakan = percetakan::all()
                         ->count();
-        $pelanggan = Pelanggan::all()
+        $pelanggan = pelanggan::all()
                         ->count();
         $order = Order::all()
                         ->count();

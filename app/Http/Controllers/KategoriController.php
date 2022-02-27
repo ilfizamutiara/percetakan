@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Kategori;
-use App\Models\Produk;
+use App\Models\produk;
 
 class KategoriController extends Controller
 {
@@ -77,7 +77,7 @@ class KategoriController extends Controller
      */
     public function destroy($id_kategori)
     {
-        $cek = Produk::select('kategori')
+        $cek = produk::select('kategori')
                           ->where('id_kategori','=',$id_kategori)
                           ->count();
         if($cek==0){

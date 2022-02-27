@@ -78,7 +78,7 @@ class RegisterController extends Controller
             
         ]);
 
-        $pelanggan = Pelanggan::create([
+        $pelanggan = pelanggan::create([
             'id_user' =>$user->id,
             
         ]);

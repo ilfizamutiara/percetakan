@@ -56,7 +56,7 @@ class ShopPaymentController extends Controller
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
 
-        $percetakan = Percetakan::first();
+        $percetakan = percetakan::first();
         $pesanan = Order::select('pesanan.tgl_pesan','pesanan.id_percetakan','pesanan.id_pesanan',
                     'ongkir','total_harga','id_status_pesanan','pesanan.created_at')
                     ->join('percetakan','pesanan.id_percetakan','percetakan.id_percetakan')
@@ -81,7 +81,7 @@ class ShopPaymentController extends Controller
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
 
-        $percetakan = Percetakan::all();
+        $percetakan = percetakan::all();
         $pesanan = Order::select('pesanan.tgl_pesan','pesanan.id_percetakan','pesanan.id_pesanan',
                     'ongkir','total_harga','id_status_pesanan')
                     ->join('percetakan','pesanan.id_percetakan','percetakan.id_percetakan')
@@ -129,7 +129,7 @@ class ShopPaymentController extends Controller
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
 
-        $percetakan = Percetakan::all();
+        $percetakan = percetakan::all();
         $pesanan = Order::select('pesanan.tgl_pesan','pesanan.id_percetakan','pesanan.id_pesanan',
                     'ongkir','total_harga','id_status_pesanan')
                     ->join('percetakan','pesanan.id_percetakan','percetakan.id_percetakan')
@@ -235,7 +235,7 @@ class ShopPaymentController extends Controller
 
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
-        $percetakan = Percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
+        $percetakan = percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->join('rekening','users.id','rekening.id_user')
                                 ->join('bank','rekening.id_bank','bank.id_bank') 

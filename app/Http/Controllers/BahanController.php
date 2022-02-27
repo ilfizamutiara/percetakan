@@ -47,23 +47,6 @@ class BahanController extends Controller
         return redirect('/bahan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id_bahan)
     {
         $bahan = Bahan::findOrFail($id_bahan);
@@ -93,7 +76,7 @@ class BahanController extends Controller
      */
     public function destroy($id_bahan)
     {
-        $cek = Produk::select('bahan')
+        $cek = produk::select('bahan')
                           ->where('id_bahan','=',$id_bahan)
                           ->count();
         if($cek==0){

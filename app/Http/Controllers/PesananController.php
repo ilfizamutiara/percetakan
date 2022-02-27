@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\DetailOrder;
 use App\Models\Order;
 use App\Models\StatusOrder;
-use App\Models\Percetakan;
-use App\Models\Pelanggan;
-use App\Models\Produk;
+use App\Models\percetakan;
+use App\Models\pelanggan;
+use App\Models\produk;
 use App\Models\Payment;
 use App\Models\Delivery;
 

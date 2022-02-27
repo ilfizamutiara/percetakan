@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
-use App\Models\Produk;
-use App\Models\Percetakan;
+use App\Models\produk;
+use App\Models\percetakan;
 use App\Models\Kategori;
-use App\Models\satuan_Produk;
+use App\Models\satuan_produk;
 use App\Models\User;
 use App\Models\Bahan;
 use App\Models\DetailOrder;
@@ -26,7 +26,7 @@ class ProdukController extends Controller
     public function index(Request $request)
     {
         $filterKeyword = $request->get('keyword');
-        $data['produk'] = Produk::select('id_produk','produk.id_percetakan','bahan','produk.id_kategori','kategori','nama_produk','satuan','harga','stok','estimasi_pengerjaan','keterangan','gambar')
+        $data['produk'] = produk::select('id_produk','produk.id_percetakan','bahan','produk.id_kategori','kategori','nama_produk','satuan','harga','stok','estimasi_pengerjaan','keterangan','gambar')
                 ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
                 ->join('bahan','produk.id_bahan','bahan.id_bahan')
                 ->join('kategori','produk.id_kategori','kategori.id_kategori')
@@ -50,8 +50,8 @@ class ProdukController extends Controller
         // $produk = produk::select('id_produk','nama_toko','nama_produk','harga','deskripsi')
         //                 ->join('toko', 'produk.id_toko','=','toko.id_toko')
         //                 ->get();
-        $produk = Produk::all();
-        $satuan = satuan_Produk::all();
+        $produk = produk::all();
+        $satuan = satuan_produk::all();
         $bahan = Bahan::all();
         $kategori = Kategori::all();
         return view('produk.create', compact('produk','satuan','bahan','kategori'))->with('Status','Data berhasil ditambahkan!');
@@ -78,7 +78,7 @@ class ProdukController extends Controller
     {
 
         $fileName ="";
-        $user = Percetakan::select('id_percetakan')
+        $user = percetakan::select('id_percetakan')
                         ->where('id_user',Auth::User()->id)
                         ->first();
         if($request->file('gambar')->isValid()) {
@@ -89,7 +89,7 @@ class ProdukController extends Controller
             $request->file('gambar')->move($uploadPath,$fileName);
 
         }
-        $produk = Produk::create([
+        $produk = produk::create([
             'id_percetakan' => $user['id_percetakan'],
             'id_satuan_produk' => $request['id_satuan_produk'],
             'id_bahan' => $request['id_bahan'],
@@ -110,8 +110,8 @@ class ProdukController extends Controller
 
     public function edit($id_produk)
     {
-        $produk = Produk::findOrFail($id_produk);
-        $satuan = Satuan_Produk::all();
+        $produk = produk::findOrFail($id_produk);
+        $satuan = satuan_produk::all();
         $bahan = Bahan::all();
         $kategori = Kategori::all();
         return view("produk/edit", compact('produk','satuan','bahan','kategori'))->with("produk", $produk);
@@ -119,10 +119,10 @@ class ProdukController extends Controller
 
     public function update(Request $request, $id_produk)
     {
-        $dataproduk = Produk::findOrFail($id_produk);
+        $dataproduk = produk::findOrFail($id_produk);
 
         $fileName ="";
-        $user = Percetakan::select('id_percetakan')
+        $user = percetakan::select('id_percetakan')
                         ->where('id_user',Auth::User()->id)
                         ->first();
         
@@ -137,7 +137,7 @@ class ProdukController extends Controller
             }
         }
         if(empty($request->gambar)){
-            $produk = Produk::where('id_produk',$id_produk)->update([
+            $produk = produk::where('id_produk',$id_produk)->update([
                 'id_satuan_produk' => $request->id_satuan_produk,
                 'id_bahan' => $request->id_bahan,
                 'id_kategori' => $request->id_kategori,
@@ -148,7 +148,7 @@ class ProdukController extends Controller
                 'keterangan' => $request->keterangan,
             ]);
         }else{
-            $produk = Produk::where('id_produk',$id_produk)->update([
+            $produk = produk::where('id_produk',$id_produk)->update([
                 'id_satuan_produk' => $request->id_satuan_produk,
                 'id_bahan' => $request->id_bahan,
                 'id_kategori' => $request->id_kategori,
@@ -170,7 +170,7 @@ class ProdukController extends Controller
                           ->where('id_produk','=',$id_produk)
                           ->count();
         if($cek==0){
-            $produk = Produk::find($id_produk);
+            $produk = produk::find($id_produk);
             $produk->delete();
             return redirect('/produk')-> with('status', 'Data Produk berhasil dihapus!');
         }else{

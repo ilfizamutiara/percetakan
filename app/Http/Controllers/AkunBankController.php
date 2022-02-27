@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AkunBank;
-use App\Models\Percetakan;
+use App\Models\percetakan;
 use App\Models\User;
 use App\Models\Bank;
 use Auth;
@@ -60,23 +60,7 @@ class AkunBankController extends Controller
         return redirect('/akunbank')->with('status','Akun Bank berhasil ditambah!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id_rek)
     {
         $akun = AkunBank::find($id_rek);
@@ -84,13 +68,7 @@ class AkunBankController extends Controller
         return view("akunbank.edit", compact('akun','bank'))->with("akun", $akun);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id_rek)
     {
         $akun  = AkunBank::find($id_rek);

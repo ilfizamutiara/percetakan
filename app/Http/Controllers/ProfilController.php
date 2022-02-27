@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Percetakan;
-use App\Models\Pelanggan;
+use App\Models\percetakan;
+use App\Models\pelanggan;
 use App\Models\Toko;
 use App\Models\User;
 use App\Models\City;
@@ -29,7 +29,7 @@ class ProfilController extends Controller
                     ->where('users.id',Auth::User()->id)
                     ->first();
 
-        $pelanggan = Pelanggan::where('id_user',Auth::user()->id)->first();
+        $pelanggan = pelanggan::where('id_user',Auth::user()->id)->first();
 
         return view('profile.edit', compact('user','pelanggan','city','province'));
 
@@ -47,7 +47,7 @@ class ProfilController extends Controller
         // $request->user()->update(
         //     $request->all()
         // );
-        $pelanggan = Pelanggan::where('id_user',Auth::user()->id)->update([
+        $pelanggan = pelanggan::where('id_user',Auth::user()->id)->update([
                     'nama' => $request->nama,
                     'jenis_kelamin' =>$request->jenis_kelamin,
                     'alamat' => $request->alamat,

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Percetakan;
+use App\Models\percetakan;
 use App\Models\User;
 use Validator;
 use Storage;
@@ -33,7 +33,7 @@ class RegisterPercetakanController extends Controller
     public function create()
     {
         $user = User::all();
-        $percetakan = Percetakan::all();
+        $percetakan = percetakan::all();
         return view('registerpercetakan', compact('user','percetakan'));
     }
 
@@ -67,7 +67,7 @@ class RegisterPercetakanController extends Controller
                 'password' => Hash::make($request['password']),
                 
             ]);
-            $percetakan = Percetakan::create([
+            $percetakan = percetakan::create([
                 'id_user' =>$user['id'],
                 'nama_toko' =>$request['nama_toko'],
                 'no_telp' =>$request['no_telp'],

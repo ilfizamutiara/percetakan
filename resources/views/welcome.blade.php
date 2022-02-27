@@ -95,7 +95,7 @@
 <nav class="navbar navbar-expand-md navbar-light " style="height: 80px; background-color:#009688">
     <div class="container navbar">
       <!-- <h3 class="brand-text font-weight-white " style="color:#ffff;">DPRINT'S</h3> -->
-      <img src="{{url('dist/img/logo.png')}}" class="svg-icon" width="15%">
+      <img src="dist/img/logo.png" class="svg-icon" width="15%">
 
       <div class="collapse navbar-collapse order-3" id="navbarCollapse">
         <!-- Left navbar links -->
