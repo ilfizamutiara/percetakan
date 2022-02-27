@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bahan;
-use App\Models\produk;
+use App\Models\Produk;
 use Validator;
 
 class BahanController extends Controller
@@ -93,7 +93,7 @@ class BahanController extends Controller
      */
     public function destroy($id_bahan)
     {
-        $cek = produk::select('bahan')
+        $cek = Produk::select('bahan')
                           ->where('id_bahan','=',$id_bahan)
                           ->count();
         if($cek==0){

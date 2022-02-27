@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DetailOrder;
 use App\Models\Order;
-use App\Models\percetakan;
-use App\Models\pelanggan;
+use App\Models\Percetakan;
+use App\Models\Pelanggan;
 use Auth;
 
 
@@ -24,9 +24,9 @@ class DashboardPercetakanController extends Controller
      */
     public function index()
     {
-        $percetakan = percetakan::all()
+        $percetakan = Percetakan::all()
                         ->count();
-        $pelanggan = pelanggan::all()
+        $pelanggan = Pelanggan::all()
                         ->count();
         $pesanan = DetailOrder::select('detail_pesanan.id_pesanan','detail_pesanan.id_percetakan',
                                 'pesanan.tgl_pesan','pesanan.nama','pesanan.alamat','pesanan.no_hp','detail_pesanan_nama_produk','status_pesanan.status')
@@ -46,7 +46,7 @@ class DashboardPercetakanController extends Controller
     }
 
     public function Addfoto(){
-        $foto = percetakan::select('id_percetakan','foto')
+        $foto = Percetakan::select('id_percetakan','foto')
                             ->get();
         return view('layouts.admin',compact('foto'));
     }

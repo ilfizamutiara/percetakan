@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Kategori;
-use App\Models\produk;
+use App\Models\Produk;
 
 class KategoriController extends Controller
 {
@@ -47,23 +47,7 @@ class KategoriController extends Controller
         return redirect('/kategori');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id_kategori)
     {
         $kategori = Kategori::findOrFail($id_kategori);
@@ -93,7 +77,7 @@ class KategoriController extends Controller
      */
     public function destroy($id_kategori)
     {
-        $cek = produk::select('kategori')
+        $cek = Produk::select('kategori')
                           ->where('id_kategori','=',$id_kategori)
                           ->count();
         if($cek==0){

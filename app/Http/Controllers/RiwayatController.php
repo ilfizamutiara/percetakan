@@ -3,18 +3,13 @@
 namespace App\Http\Controllers;
 use App\Models\DetailOrder;
 use App\Models\Order;
-use App\Models\produk;
+use App\Models\Produk;
 use Auth;
 
 use Illuminate\Http\Request;
 
 class RiwayatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $pesanan = Order::select('id_pesanan','nama_toko','users.foto','pesanan.nama','id_status_pesanan','total_bayar',

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\percetakan;
-use App\Models\toko;
+use App\Models\Percetakan;
+use App\Models\Toko;
 use App\Models\User;
 use Validator;
 use Auth;
@@ -23,7 +23,7 @@ class PercetakanController extends Controller
      */
     public function index()
     {
-        $percetakan = percetakan::select('id_percetakan','id','username','email','nama_toko','alamat_toko','no_telp','users.foto')
+        $percetakan = Percetakan::select('id_percetakan','id','username','email','nama_toko','alamat_toko','no_telp','users.foto')
             ->join('users','percetakan.id_user','=','users.id')
             ->orderBy('nama_toko', 'asc')
             ->get();
@@ -46,7 +46,7 @@ class PercetakanController extends Controller
      */
     public function create()
     {
-        $percetakan = percetakan::select('username','nama_toko','alamat_toko','no_telp','email','foto')
+        $percetakan = Percetakan::select('username','nama_toko','alamat_toko','no_telp','email','foto')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->get();
         return view('percetakan.create', compact('percetakan'));
@@ -101,33 +101,16 @@ class PercetakanController extends Controller
             return redirect('/percetakan');
         }
         else{
-            $percetakan = percetakan::all();
+            $percetakan = Percetakan::all();
             $user = User::all();
             return redirect('percetakan.create',compact('user','percetakan'))-> with('status', 'Data Percetakan berhasil ditambahkan!');  
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $user = User::where('id',$id)->first();
-        $percetakan = percetakan::where('id_user',$id)->first();
+        $percetakan = Percetakan::where('id_user',$id)->first();
         return view('percetakan.edit', compact('user','percetakan'));  
     }
 
@@ -166,7 +149,7 @@ class PercetakanController extends Controller
                     'foto' => $fileName,
                 ]);
             }
-            $percetakan = percetakan::where('id_user',$id)->update([
+            $percetakan = Percetakan::where('id_user',$id)->update([
                 'nama_toko' => $request->nama_toko,
                 'alamat_toko' => $request->alamat_toko,
                 'no_telp' => $request->no_telp,
@@ -184,7 +167,7 @@ class PercetakanController extends Controller
      */
     public function destroy($id)
     {
-        $percetakan = percetakan::select('percetakan')
+        $percetakan = Percetakan::select('percetakan')
                                 ->where('id_user',$id);
         $percetakan->delete();
         $user = User::find($id);

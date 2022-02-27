@@ -13,14 +13,9 @@ use Illuminate\Http\Request;
 
 class ShopPaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $percetakan = percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
+        $percetakan = Percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->join('rekening','users.id','rekening.id_user')
                                 ->join('bank','rekening.id_bank','bank.id_bank')                            
@@ -61,7 +56,7 @@ class ShopPaymentController extends Controller
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
 
-        $percetakan = percetakan::first();
+        $percetakan = Percetakan::first();
         $pesanan = Order::select('pesanan.tgl_pesan','pesanan.id_percetakan','pesanan.id_pesanan',
                     'ongkir','total_harga','id_status_pesanan','pesanan.created_at')
                     ->join('percetakan','pesanan.id_percetakan','percetakan.id_percetakan')
@@ -86,7 +81,7 @@ class ShopPaymentController extends Controller
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
 
-        $percetakan = percetakan::all();
+        $percetakan = Percetakan::all();
         $pesanan = Order::select('pesanan.tgl_pesan','pesanan.id_percetakan','pesanan.id_pesanan',
                     'ongkir','total_harga','id_status_pesanan')
                     ->join('percetakan','pesanan.id_percetakan','percetakan.id_percetakan')
@@ -134,7 +129,7 @@ class ShopPaymentController extends Controller
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
 
-        $percetakan = percetakan::all();
+        $percetakan = Percetakan::all();
         $pesanan = Order::select('pesanan.tgl_pesan','pesanan.id_percetakan','pesanan.id_pesanan',
                     'ongkir','total_harga','id_status_pesanan')
                     ->join('percetakan','pesanan.id_percetakan','percetakan.id_percetakan')
@@ -210,7 +205,7 @@ class ShopPaymentController extends Controller
 
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
-        $percetakan = percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko',
+        $percetakan = Percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko',
                                     'no_rek','nama_pemilik')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->join('rekening','users.id','rekening.id_user')
@@ -240,7 +235,7 @@ class ShopPaymentController extends Controller
 
         $tgl1 = $request->tgl1;
         $tgl2 = $request->tgl2;
-        $percetakan = percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
+        $percetakan = Percetakan::select('id_percetakan','nama_bank','no_telp','nama_toko','no_rek','nama_pemilik')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->join('rekening','users.id','rekening.id_user')
                                 ->join('bank','rekening.id_bank','bank.id_bank') 
@@ -284,37 +279,7 @@ class ShopPaymentController extends Controller
         return view('shop_payment.transfer', compact('percetakan','toko','payment','rekening','jml_tf'));
     }
 
-    // public function upload_bukti(Request $request, $id_percetakan)
-    // {
-    //     date_default_timezone_set("Asia/Jakarta");
-
-    //     $tgl1 = $request->tgl1;
-    //     $tgl2 = $request->tgl2;
-    //     // $percetakan = percetakan::findOrFail($id_percetakan);
-    //     $jml_tf = Order::select('pesanan.tgl_pesan','pesanan.id_percetakan','pesanan.id_pesanan','ongkir','total_harga')
-    //                             ->join('percetakan','pesanan.id_percetakan','percetakan.id_percetakan')
-    //                             ->where('id_percetakan',$id_percetakan)
-    //                             ->whereBetween('pesanan.tgl_pesan', [$tgl1, $tgl2])
-    //                             ->paginate(10); 
-    //     $produk = shop_payment::create([
-    //         'id_percetakan' => $request['id_percetakan'],
-    //         'no_rek_pengirim' => $request['no_rek_pengirim'],
-    //         'no_rek_penerima' => $request['no_rek_penerima'],
-    //         'jml_transfer' => $request['jml_transfer'],
-    //         'bukti_transfer' => $request['bukti_transfer'],
-    //         'status' => "lunas",
-    //     ]);
-                
-        
-    //     return view('shop_payment.cek-pembayaran', compact('tgl1','tgl2','jml_tf'));
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request, $id_percetakan)
     {
         $fileName ="";
@@ -335,48 +300,5 @@ class ShopPaymentController extends Controller
         return redirect('/shop_payment/cek-pembayaranToko')->with('status','Pembayaran Berhasil');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

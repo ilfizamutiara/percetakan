@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use App\Models\produk;
-use App\Models\satuan_produk;
-use App\Models\percetakan;
+use App\Models\Produk;
+use App\Models\Satuan_Produk;
+use App\Models\Percetakan;
 use App\Models\Keranjang;
 use Auth;
 use DB;
@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function index(Request $request){
         $filterKeyword = $request->keyword;
-        $terlaris= produk::select('produk.id_produk','nama_toko','satuan','nama_produk','harga','keterangan','gambar')
+        $terlaris= Produk::select('produk.id_produk','nama_toko','satuan','nama_produk','harga','keterangan','gambar')
                             ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
                             ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
                             ->join('detail_pesanan','produk.id_produk','detail_pesanan.id_produk')
@@ -43,7 +43,7 @@ class HomeController extends Controller
                         ->groupBy('id_produk')
                         ->orderBy('id_produk')->get();
 
-        $produk= produk::select('produk.id_produk','nama_toko','satuan','nama_produk','harga','keterangan','gambar')
+        $produk= Produk::select('produk.id_produk','nama_toko','satuan','nama_produk','harga','keterangan','gambar')
                             ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
                             ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
                             ->where('nama_produk','like',"%".$filterKeyword."%")
@@ -54,7 +54,7 @@ class HomeController extends Controller
     }
 
     public function beranda(){
-        $produk= produk::select('id_produk','nama_toko','satuan','nama_produk','harga','keterangan','gambar')
+        $produk= Produk::select('id_produk','nama_toko','satuan','nama_produk','harga','keterangan','gambar')
                             ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
                             ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
                             ->get();

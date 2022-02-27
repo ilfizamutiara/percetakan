@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\DetailOrder;
 use App\Models\Order;
 use App\Models\StatusOrder;
-use App\Models\percetakan;
-use App\Models\pelanggan;
+use App\Models\Percetakan;
+use App\Models\Pelanggan;
 use App\Models\Produk;
 use App\Models\Payment;
 use App\Models\Delivery;
@@ -274,26 +274,4 @@ class PesananController extends Controller
              return view('pesanan.show',compact('detailorder'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

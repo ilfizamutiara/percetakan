@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AkunBank;
-use App\Models\percetakan;
+use App\Models\Percetakan;
 use App\Models\User;
 use App\Models\Bank;
 use Auth;

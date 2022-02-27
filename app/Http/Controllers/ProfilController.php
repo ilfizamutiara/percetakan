@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\percetakan;
-use App\Models\pelanggan;
-use App\Models\toko;
+use App\Models\Percetakan;
+use App\Models\Pelanggan;
+use App\Models\Toko;
 use App\Models\User;
 use App\Models\City;
 use App\Models\Province;
@@ -29,7 +29,7 @@ class ProfilController extends Controller
                     ->where('users.id',Auth::User()->id)
                     ->first();
 
-        $pelanggan = pelanggan::where('id_user',Auth::user()->id)->first();
+        $pelanggan = Pelanggan::where('id_user',Auth::user()->id)->first();
 
         return view('profile.edit', compact('user','pelanggan','city','province'));
 
@@ -47,7 +47,7 @@ class ProfilController extends Controller
         // $request->user()->update(
         //     $request->all()
         // );
-        $pelanggan = pelanggan::where('id_user',Auth::user()->id)->update([
+        $pelanggan = Pelanggan::where('id_user',Auth::user()->id)->update([
                     'nama' => $request->nama,
                     'jenis_kelamin' =>$request->jenis_kelamin,
                     'alamat' => $request->alamat,
@@ -58,19 +58,5 @@ class ProfilController extends Controller
         return redirect()->route('profile/edit');
     }
 
-    // public function profil()
-    // {
-    //     $pelanggan = pelanggan::select('id_pelanggan','pelanggan.id_user','username','email','nama','jenis_kelamin','no_hp','alamat','foto')
-    //             ->join('users','pelanggan.id_user','=','users.id')
-    //             ->where('pelanggan.id_user', '=', Auth::user()->id)
-    //             ->get();
-    //     return view('profile.profilcostumer',['pelanggan' => $pelanggan]);
-    // }
-
-    // public function ubah($id)
-    // {
-    //     $user = User::where('id',$id)->first();
-    //     $percetakan = percetakan::where('id_user',$id)->first();
-    //     return view('profile.profil', compact('user','percetakan'));  
-    // }
+ 
 }

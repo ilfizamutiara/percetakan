@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\Pelanggan;
-use App\Models\percetakan;
+use App\Models\Percetakan;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -78,7 +78,7 @@ class RegisterController extends Controller
             
         ]);
 
-        $pelanggan = pelanggan::create([
+        $pelanggan = Pelanggan::create([
             'id_user' =>$user->id,
             
         ]);

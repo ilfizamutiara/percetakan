@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\percetakan;
-use App\Models\pelanggan;
-use App\Models\produk;
+use App\Models\Percetakan;
+use App\Models\Pelanggan;
+use App\Models\Produk;
 use App\Models\DetailProduk;
 use App\Models\Keranjang;
 use App\Models\DetailOrder;
 use App\Models\Order;
-use App\Models\provinsi;
-use App\Models\kota;
-use App\Models\kurir;
+use App\Models\Kurir;
 use App\Models\Upload;
 use App\Models\City;
 use App\Models\Province;
@@ -45,7 +43,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $daftartoko = percetakan::select('id_percetakan','id_user','username','email','nama_toko','alamat_toko','no_telp','users.foto')
+        $daftartoko = Percetakan::select('id_percetakan','id_user','username','email','nama_toko','alamat_toko','no_telp','users.foto')
             ->join('users','percetakan.id_user','=','users.id')
             ->orderBy('nama_toko', 'asc')
             ->get();
@@ -54,7 +52,7 @@ class DashboardController extends Controller
 
     public function show($id_percetakan)
     {
-        $lihat = produk::select('produk.id_produk','produk.id_bahan','bahan.bahan','percetakan.id_percetakan','produk.nama_produk','produk.harga','produk.stok','produk.estimasi_pengerjaan','produk.keterangan','produk.gambar')
+        $lihat = Produk::select('produk.id_produk','produk.id_bahan','bahan.bahan','percetakan.id_percetakan','produk.nama_produk','produk.harga','produk.stok','produk.estimasi_pengerjaan','produk.keterangan','produk.gambar')
                         ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan') 
                         ->join('bahan','produk.id_bahan','bahan.id_bahan')           
                         ->where('produk.id_percetakan', '=', $id_percetakan)
@@ -67,7 +65,7 @@ class DashboardController extends Controller
     public function create($id_produk)
     {
         $keranjang = Keranjang::all();
-        $detail = produk::select('id_produk','nama_toko','satuan','bahan.bahan','id_kategori','nama_produk','harga','keterangan','gambar','stok','estimasi_pengerjaan')
+        $detail = Produk::select('id_produk','nama_toko','satuan','bahan.bahan','id_kategori','nama_produk','harga','keterangan','gambar','stok','estimasi_pengerjaan')
                             ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
                             ->join('bahan','produk.id_bahan','bahan.id_bahan')           
                             ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
@@ -79,11 +77,11 @@ class DashboardController extends Controller
 
     public function addcart(Request $request)
     {
-        $pelanggan = pelanggan::select('id_pelanggan','nama','no_hp','alamat')
+        $pelanggan = Pelanggan::select('id_pelanggan','nama','no_hp','alamat')
                                 ->where('id_user',Auth::User()->id)
                                 ->first();
 
-        $produk = produk::select('id_produk','produk.id_percetakan','nama_toko','satuan','nama_produk','produk.harga','keterangan','gambar')
+        $produk = Produk::select('id_produk','produk.id_percetakan','nama_toko','satuan','nama_produk','produk.harga','keterangan','gambar')
                             ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
                             ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
                             ->where('id_produk','=', $request->id_produk)
@@ -193,7 +191,7 @@ class DashboardController extends Controller
     }
 
     public function checkout(){
-        $produk = produk::all();
+        $produk = Produk::all();
         $keranjang = Keranjang::select('id_keranjang','pelanggan.id_pelanggan','keranjang.id_percetakan','keranjang.id_produk',
                             'percetakan.nama_toko','produk.gambar','produk.nama_produk','produk.harga','jumlah','ukuran','total')
                             ->join('produk','keranjang.id_produk','produk.id_produk')
@@ -206,7 +204,7 @@ class DashboardController extends Controller
         // $order = Order::select('id_pesanan','id_status_pesanan','id_pelanggan','nama','no_hp',
         //                        'alamat','total_harga','ongkir','total_bayar','metode_pembayaran','metode_pengiriman')
         //                 ->first();
-        $pelanggan = pelanggan::select('id_pelanggan','nama','no_hp','alamat')
+        $pelanggan = Pelanggan::select('id_pelanggan','nama','no_hp','alamat')
                                 ->where('id_user',Auth::User()->id)
                                 ->first();
         return view('checkout.checkout',compact('keranjang','pelanggan','produk'));
@@ -214,7 +212,7 @@ class DashboardController extends Controller
 
     //checkout/upload-file
     public function upload_file(){
-        $produk = produk::all();
+        $produk = Produk::all();
         $keranjang = Keranjang::select('id_keranjang','pelanggan.id_pelanggan','keranjang.id_percetakan','keranjang.id_produk',
                             'percetakan.nama_toko','produk.gambar','produk.nama_produk','produk.harga','jumlah','ukuran','total')
                             ->join('produk','keranjang.id_produk','produk.id_produk')

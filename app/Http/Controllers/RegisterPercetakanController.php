@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\percetakan;
+use App\Models\Percetakan;
 use App\Models\User;
 use Validator;
 use Storage;
@@ -30,16 +30,10 @@ class RegisterPercetakanController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
     public function create()
     {
         $user = User::all();
-        $percetakan = percetakan::all();
+        $percetakan = Percetakan::all();
         return view('registerpercetakan', compact('user','percetakan'));
     }
 
@@ -56,15 +50,10 @@ class RegisterPercetakanController extends Controller
             $fileName ="";
             if($request->file('foto')->isValid()) {
                 $gambarFile = $request->file('foto');
-                $extention = $gambarFile->getClientOriginalExtension(); // untuk ambil ektensi filenya
+                $extention = $gambarFile->getClientOriginalExtension();
                 $fileName = date('YmdHis') . "." . $extention;
                 $uploadPath = "upload/percetakan-foto";
                 $request->file('foto')->move($uploadPath,$fileName);
-                // $percetakan['foto'] = $fileName;  // ni buat apa?? 
-                
-                // gambarnya disimpan di /public/upload/product-gambar
-
-                
             }
 
             $user = User::create([
@@ -78,7 +67,7 @@ class RegisterPercetakanController extends Controller
                 'password' => Hash::make($request['password']),
                 
             ]);
-            $percetakan = percetakan::create([
+            $percetakan = Percetakan::create([
                 'id_user' =>$user['id'],
                 'nama_toko' =>$request['nama_toko'],
                 'no_telp' =>$request['no_telp'],

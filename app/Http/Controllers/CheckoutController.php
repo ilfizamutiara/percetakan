@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\pelanggan;
+use App\Models\Pelanggan;
 use App\Models\User;
-use App\Models\province;
+use App\Models\Province;
 use App\Models\Keranjang;
-use App\Models\produk;
-use App\Models\city;
+use App\Models\Produk;
+use App\Models\City;
 use Auth;
 
 class CheckoutController extends Controller
@@ -23,11 +23,11 @@ class CheckoutController extends Controller
                     ->where('users.id',Auth::User()->id)
                     ->first();
 
-        $pelanggan = pelanggan::select('id_pelanggan','nama','no_hp','alamat')
+        $pelanggan = Pelanggan::select('id_pelanggan','nama','no_hp','alamat')
                     ->where('id_user',Auth::User()->id)
                     ->first(); 
 
-        $produk = produk::all();
+        $produk = Produk::all();
         $keranjang = Keranjang::select('id_keranjang','pelanggan.id_pelanggan','keranjang.id_percetakan','keranjang.id_produk',
                                 'percetakan.nama_toko','produk.gambar','produk.nama_produk','produk.harga','jumlah','ukuran','total')
                                 ->join('produk','keranjang.id_produk','produk.id_produk')
@@ -50,7 +50,7 @@ class CheckoutController extends Controller
             'id_city' => $request->id_city,
             'kode_pos' => $request->kode_pos,
         ]);
-        $pelanggan = pelanggan::where('id_user',Auth::user()->id)->update([
+        $pelanggan = Pelanggan::where('id_user',Auth::user()->id)->update([
                     'nama' => $request->nama,
                     'alamat' => $request->alamat,
                     'no_hp' => $request->no_hp,
