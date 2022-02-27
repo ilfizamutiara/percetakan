@@ -412,6 +412,7 @@ class DashboardController extends Controller
                             ->first();
         $met_bayar = AkunBank::select('id_rek','rekening.id_bank','no_rek','nama_bank','nama_pemilik')
                             ->join('bank','rekening.id_bank','bank.id_bank')
+                            ->where('id_user',1)
                             ->get();
         
         $jmlToko = DB::table('keranjang')
@@ -494,15 +495,7 @@ class DashboardController extends Controller
                 ->join('pelanggan', 'keranjang.id_pelanggan', 'pelanggan.id_pelanggan')
                 ->where('id_user',Auth::User()->id)
                 ->distinct()->get();
-        
-                // return $pajak;
-        
-        // $id_percetakan =array();
-        // foreach($cart as $car){
-        //     $id_percetakan[] = $car->id_percetakan;
-        //     $id_percetakan[] = $cetak;
-        //     return $id_percetakan;
-        //   }
+
         
         $input = $request->all();
         $status= "1";

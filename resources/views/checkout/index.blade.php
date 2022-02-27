@@ -120,35 +120,6 @@
             <i class="fas fa-shopping-cart"></i>
           </a>
         </li>
-        <!-- Notifications Dropdown Menu 
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
-        </li>-->
-
-
           <li class="nav-item dropdown">
           <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" style="color:#ffff;" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{ Auth::user()->username }} <span class="caret"></span></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
@@ -172,18 +143,6 @@
     <div class="content">
       <div class="container-fluid">
         <div class="content">
-      <!-- <div class="container-fluid">
-          <div class="row">
-              <div class="col-sm-6">
-              </div>
-              <div class="col-sm-12 mt-3">
-                  <ol class="breadcrumb ">
-                      <li class="breadcrumb-item float-right"><a  href="{{ url('/home') }}">Home</a></li>
-                      <li class="breadcrumb-item float-right active">Orderan Saya</li>
-                  </ol>
-              </div>
-          </div>
-      </div> -->
           <div class="col-lg-12 mt-lg-3">
               <!-- Default box -->
             <div class="card card-solid">
