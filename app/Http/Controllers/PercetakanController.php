@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Percetakan;
+use App\Models\percetakan;
 use App\Models\Toko;
 use App\Models\User;
 use Validator;
@@ -23,7 +23,7 @@ class PercetakanController extends Controller
      */
     public function index()
     {
-        $percetakan = Percetakan::select('id_percetakan','id','username','email','nama_toko','alamat_toko','no_telp','users.foto')
+        $percetakan = percetakan::select('id_percetakan','id','username','email','nama_toko','alamat_toko','no_telp','users.foto')
             ->join('users','percetakan.id_user','=','users.id')
             ->orderBy('nama_toko', 'asc')
             ->get();
@@ -46,7 +46,7 @@ class PercetakanController extends Controller
      */
     public function create()
     {
-        $percetakan = Percetakan::select('username','nama_toko','alamat_toko','no_telp','email','foto')
+        $percetakan = percetakan::select('username','nama_toko','alamat_toko','no_telp','email','foto')
                                 ->join('users','percetakan.id_user','users.id')
                                 ->get();
         return view('percetakan.create', compact('percetakan'));
@@ -101,7 +101,7 @@ class PercetakanController extends Controller
             return redirect('/percetakan');
         }
         else{
-            $percetakan = Percetakan::all();
+            $percetakan = percetakan::all();
             $user = User::all();
             return redirect('percetakan.create',compact('user','percetakan'))-> with('status', 'Data Percetakan berhasil ditambahkan!');  
         }
