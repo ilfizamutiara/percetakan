@@ -23,7 +23,8 @@ class ProfilController extends Controller
         // $user = User::where('id',Auth::user()->id)->first();
         $city = City::all();
         $province = Province::all();
-        $user = User::select('id','username','email','users.id','users.id_city','users.id_province','kota.city_name','province.name','kode_pos')
+        $user = User::select('id','username','email','users.id','users.id_city',
+                    'users.id_province','kota.city_name','province.name','kode_pos','foto')
                     ->join('kota','users.id_city','kota.id_city')
                     ->join('province','kota.id_province','province.id_province')
                     ->where('users.id',Auth::User()->id)
@@ -37,16 +38,27 @@ class ProfilController extends Controller
 
     public function update(Request $request)
     {
+        $fileName ="";
+        
+        if($request->hasFile('foto')){
+            if($request->file('foto')->isValid()) {
+                $gambarFile = $request->file('foto');
+                $extention = $gambarFile->getClientOriginalExtension();
+                $fileName = date('YmdHis') . "." . $extention;
+                $uploadPath = "upload/pelanggan-foto";
+                $request->file('foto')->move($uploadPath,$fileName);
+
+            }
+        }
 
         $user = User::where('id',Auth::user()->id)->update([
             'username' => $request->username,
             'email' =>$request->email,
             'id_province' => $request->id_province,
             'id_city' => $request->id_city,
+            'foto' => $fileName,
         ]);
-        // $request->user()->update(
-        //     $request->all()
-        // );
+
         $pelanggan = pelanggan::where('id_user',Auth::user()->id)->update([
                     'nama' => $request->nama,
                     'jenis_kelamin' =>$request->jenis_kelamin,

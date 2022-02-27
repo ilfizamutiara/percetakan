@@ -10,7 +10,7 @@
                         @if(Auth::user()->foto == null)
                           <img class="profile-user-img img-fluid img-circle" src="{{url('dist/img/tanpa_nama.jpg')}}" width="150px"/>
                         @else
-                          <img class="img-gambar" src="{{ asset('/upload/pelanggan-foto/'.Auth::user()->foto) }}" width="150px"></br>
+                          <img class="profile-user-img img-fluid img-circle" src="{{ asset('/upload/pelanggan-foto/'.Auth::user()->foto) }}" width="150px"></br>
                         @endif
                         </div>
                         <h3 class="profile-username text-center">{{Auth::user()->username}}</h3>
@@ -121,6 +121,16 @@
                                         </option>
                                     @endforeach
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                            <label for="foto" class="col-sm-3 col-form-label">Image</label>
+                                <div class="col-sm-9">
+                                <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" 
+                                    name="foto"/>
+                                    @error('foto')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
                                 </div>
                             </div>
                             
