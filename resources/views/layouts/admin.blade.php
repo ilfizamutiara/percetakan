@@ -23,6 +23,11 @@
       <link rel="stylesheet" href="{{ asset('adminlte/plugins/jqvmap/jqvmap.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">
   <!-- <link rel="stylesheet" href="{{url('plugins/jqvmap/jqvmap.min.css')}}"> -->
   <!-- Theme style -->
   <!-- <link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}"> -->
