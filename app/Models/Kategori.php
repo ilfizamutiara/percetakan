@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori extends Model
 {
     protected $primaryKey = 'id_kategori';
+    // protected $autoincrement = 'id_kategori';
     protected $table = 'kategori';
-    protected $fillable = ['id_kategori','kategori'];
-    public $timestamps = false;
+    protected $fillable = ['kategori'];
+    public $timestamps = true;
 }
