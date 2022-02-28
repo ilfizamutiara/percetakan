@@ -120,35 +120,6 @@
             <i class="fas fa-shopping-cart"></i>
           </a>
         </li>
-        <!-- Notifications Dropdown Menu 
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
-        </li>-->
-
-
           <li class="nav-item dropdown">
           <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" style="color:#ffff;" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{ Auth::user()->username }} <span class="caret"></span></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
@@ -181,7 +152,13 @@
               <div class="row">
                 <div class="col-6 ">
                   <div class="card card-solid mt-3 ml-2">
-                    
+                    <div class="card-header" style="background-color:#009688 ">
+                      <h4 style="color:#ffff"><strong>Alamat</strong></h3>
+                    </div>
+                    <div class="card-body">
+                      <p>Nama : {{$pelanggan->nama}} <br> No HP : {{$pelanggan->no_hp}} <br> Alamat : {{$pelanggan->alamat}} <br>
+                        {{$user->city_name}}, {{$user->name}},{{$user->kode_pos}}</p>
+                    </div>
                   </div>
                   <div class="card card-solid mt-3 ml-2">
                   <form method="POST" action="{{ url('checkout/pengiriman') }}" align="left" enctype="multipart/form-data">
@@ -198,62 +175,59 @@
                       @endforeach
                       </select>
                     </div>
-                    <!-- <div class="col-12 mb-3">
-                      <label for="" >Layanan</label>
-                      <select name="ongkir" class="form-control" id="ongkir"  selected="selected">
-                        <option value="">--- pilih ---</option>
-                      </select>
-                    </div>  -->
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary col-12 ">Lanjut</button> 
                     </form><br>
                 </div>
                 <div class="col-6 ">
-                <form method="POST" action="#" align="left" >
-                @csrf
-                  <div class="col-12 table-responsive mt-lg-3 mb-lg-5">
-                    <table class="table table-striped stacktable">
-                      <thead style="background-color:#009688">
-                        <h3 >Daftar Belanja</h3>
-                        <tr>
-                          <th>Toko</th>
-                          <th>Produk</th>
-                          <th>Harga</th>
-                          <th>Jumlah</th>
-                          <th>Total</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach($keranjang as $ker)
-                        <tr>
-                          <td>{{$ker->nama_toko}}</td>
-                          <td>{{$ker->nama_produk}}</td>
-                          <td>Rp.{{number_format($ker->harga)}}</td>
-                          <td>{{$ker->jumlah}}</td>
-                          <td>Rp.{{number_format($ker->total)}}</td>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="col-5 mt-3 float-right">
-                    <div class="table-responsive">
-                      <table class="table stacktable ">
-                        <tr>
-                          <th>Total Belanja</th>
-                            <td>:</td>
-                            <td>Rp.{{number_format($keranjang->sum('total'))}}</td>
-                        </tr>
-                          <th>Total Bayar </th>
-                            <td>:</td>
-                            <td>Rp.{{number_format($keranjang->sum('total'))}}</td>
-                        </tr>
-                      </table>
+                        <div class="card card-solid  mt-3 ml-2 mr-2">
+                            <div class="card-header"style="background-color:#009688 ">
+                            <h4 style="color:#ffff"><strong>Daftar Belanja</strong></h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped stacktable">
+                                <thead style="background-color:#009688">
+                                    <tr>
+                                        <th>Toko</th>
+                                        <th>Produk</th>
+                                        <th>Harga</th>
+                                        <th>Jumlah</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($keranjang as $ker)
+                                    <tr>
+                                        <td>{{$ker->nama_toko}}</td>
+                                        <td>{{$ker->nama_produk}}</td>
+                                        <td>Rp.{{number_format($ker->harga)}}</td>
+                                        <td>{{$ker->jumlah}}</td>
+                                        <td id="subTotal">Rp.{{number_format($ker->total)}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                </table>
+                                <div class="col-6 mt-3 float-right">
+                                    <div class="table-responsive">
+                                        <table class="total table stacktable ">
+                                        <tr>
+                                          <th>Total Belanja</th>
+                                            <td>:</td>
+                                            <td>Rp.{{number_format($keranjang->sum('total'))}}</td>
+                                        </tr>
+                                          <th>Total Bayar </th>
+                                            <td>:</td>
+                                            <td>Rp.{{number_format($keranjang->sum('total'))}}</td>
+                                        </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                        <button type="submit" class="btn btn-success col-12 mb-3">Order</button>
+ 
                     </div>
-                  </div>
-                </form>
-              </div>
               </div>
             </div>
           </div>

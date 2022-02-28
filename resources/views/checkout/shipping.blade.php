@@ -1,18 +1,6 @@
 @extends('layouts.costumer')
 @section('content')
 <div class="content">
-    <!-- <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-            </div>
-            <div class="col-sm-12 mt-3">
-                <ol class="breadcrumb ">
-                    <li class="breadcrumb-item float-right"><a  href="{{ url('/home') }}">Home</a></li>
-                    <li class="breadcrumb-item float-right active">checkout</li>
-                </ol>
-            </div>
-        </div>
-    </div> -->
     <div class="col-lg-12 mt-lg-3" >
       <!-- Default box -->
         <form method="GET" action="{{ url('checkout/shipping') }}" align="left" enctype="multipart/form-data">
@@ -24,8 +12,8 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="card card-solid mt-3 ml-2">
-                            <div class="card-header">
-                                <h3><strong>Alamat</strong></h3>
+                            <div class="card-header"style="background-color:#009688 ">
+                            <h4 style="color:#ffff"><strong>Alamat</strong></h3>
                             </div>
                             <div class="card-body">
                                 <p>Nama : {{$pelanggan->nama}} <br> No HP : {{$pelanggan->no_hp}} <br> Alamat : {{$pelanggan->alamat}} <br>
@@ -51,8 +39,8 @@
                             </div>
                         </div>
                         <div class="card card-solid  ml-2">
-                            <div class="card-header">
-                                <h3><strong>Pembayaran</strong></h3>
+                            <div class="card-header"style="background-color:#009688 ">
+                            <h4 style="color:#ffff"><strong>Pembayaran</strong></h3>
                             </div>
                             <div class="card-body">
                                 <div class="form-group row">
@@ -67,8 +55,8 @@
                     </div>
                     <div class="col-6 ">
                         <div class="card card-solid  mt-3 ml-2 mr-2">
-                            <div class="card-header">
-                                <h3><strong>Daftar Belanja</strong></h3>
+                            <div class="card-header"style="background-color:#009688 ">
+                            <h4 style="color:#ffff"><strong>Daftar Belanja</strong></h3>
                             </div>
                             <div class="card-body">
                                 <table class="table table-striped stacktable">

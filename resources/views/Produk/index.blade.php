@@ -10,8 +10,26 @@
         <div class="card-header">
             <h1 class="mt-3">Daftar Produk</h1> 
         </div>
+        
         <div class="card-header">
-          <a href="produk/create" class="btn btn-success my-3"><i class="fas fa-plus"> Produk </i></a>      
+          <div class="row">
+            <div class="col-6">
+            <a href="produk/create" class="btn btn-success my-3"><i class="fas fa-plus"> Produk </i></a> 
+            </div>
+            <div class="col-6">
+              <form class="col-6" action="/produk" method="GET" >
+              <div class="input-group input-group-sm">
+                <input type="text" class="form-control" placeholder ="Search" value="{{ Request::get('keyword') }}" id="keyword" name="keyword">            
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+              </form>   
+            </div>
+          </div>
+            
         </div>
             @if (session ('status'))
                 <div class="alert alert-success">
@@ -59,7 +77,7 @@
 @section('js')
 <script>
   $(function () {
-    $("#produk").DataTable({
+    $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       
       // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
@@ -73,6 +91,11 @@
       "autoWidth": false,
       "responsive": true,
     });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#tabel1").DataTable();
   });
 </script>
 @endsection

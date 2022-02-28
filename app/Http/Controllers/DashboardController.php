@@ -271,13 +271,13 @@ class DashboardController extends Controller
                             ->orderBy('nama_toko','asc')
                             ->get();
         $pelanggan = pelanggan::select('id_pelanggan','nama','no_hp','alamat')
-                                ->where('id_user',Auth::User()->id)
-                                ->first(); 
+                            ->where('id_user',Auth::User()->id)
+                            ->first();
         $user = User::select('users.id','users.id_city','users.id_province','kota.city_name','province.name','kode_pos')
-                        ->join('kota','users.id_city','kota.id_city')
-                        ->join('province','kota.id_province','province.id_province')
-                        ->where('users.id',Auth::User()->id)
-                        ->first();
+                            ->join('kota','users.id_city','kota.id_city')
+                            ->join('province','kota.id_province','province.id_province')
+                            ->where('users.id',Auth::User()->id)
+                            ->first();
         $province = Province::get();
         $kurir = kurir::all();
         $city = City::get();

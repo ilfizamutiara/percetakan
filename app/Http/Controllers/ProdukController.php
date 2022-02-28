@@ -25,19 +25,25 @@ class ProdukController extends Controller
      */
     public function index(Request $request)
     {
-        $filterKeyword = $request->get('keyword');
-        $data['produk'] = produk::select('id_produk','produk.id_percetakan','bahan','produk.id_kategori','kategori','nama_produk','satuan','harga','stok','estimasi_pengerjaan','keterangan','gambar')
-                ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
-                ->join('bahan','produk.id_bahan','bahan.id_bahan')
-                ->join('kategori','produk.id_kategori','kategori.id_kategori')
-                ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
-                ->join('users','percetakan.id_user','users.id')
-                ->where('percetakan.id_user', '=', Auth::user()->id)
-                ->get();
-        if($filterKeyword){
-            $data['produk'] = Produk::where('nama_produk','LIKE', "%$filterKeyword%");
-        }
-        return view('produk.index', $data);
+        $filterKeyword = $request->keyword;
+        $produk= produk::select('id_produk','produk.id_percetakan','bahan','produk.id_kategori','kategori','nama_produk','satuan','harga','stok','estimasi_pengerjaan','keterangan','gambar')
+                            ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
+                            ->join('bahan','produk.id_bahan','bahan.id_bahan')
+                            ->join('kategori','produk.id_kategori','kategori.id_kategori')
+                            ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
+                            ->join('users','percetakan.id_user','users.id')
+                            ->where('percetakan.id_user', '=', Auth::user()->id)
+                            ->where('nama_produk','like',"%".$filterKeyword."%")
+                            ->get(); 
+        // $produk = produk::select('id_produk','produk.id_percetakan','bahan','produk.id_kategori','kategori','nama_produk','satuan','harga','stok','estimasi_pengerjaan','keterangan','gambar')
+        //         ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
+        //         ->join('bahan','produk.id_bahan','bahan.id_bahan')
+        //         ->join('kategori','produk.id_kategori','kategori.id_kategori')
+        //         ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
+        //         ->join('users','percetakan.id_user','users.id')
+        //         ->where('percetakan.id_user', '=', Auth::user()->id)
+        //         ->get();
+        return view('produk.index', compact('produk'));
     }
 
     /**
