@@ -9,6 +9,6 @@ class Delivery extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'delivery';
-    protected $fillable = ['id_pesanan','id_percetakan','no_resi'];
+    protected $fillable = ['id','id_pesanan','id_percetakan','no_resi'];
     public $timestamps = false;
 }

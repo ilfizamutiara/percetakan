@@ -9,15 +9,7 @@ class Keranjang extends Model
 {
    protected $primaryKey = 'id_keranjang';
    protected $table = 'keranjang';
-   protected $fillable = ['id_produk','id_pelanggan','id_percetakan','jumlah','ukuran','dokumen','total','created_at'];
+   protected $fillable = ['id_keranjang','id_produk','id_pelanggan','id_percetakan','jumlah','ukuran','dokumen','total','created_at'];
    public $timestamps = false;
 
-   public function toko()
-   {
-      return $this->hasMany(percetakan::class);
-   }
-   public function produk()
-   {
-      return $this->hasMany(produk::class);
-   }
 }

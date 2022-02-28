@@ -9,6 +9,6 @@ class Bahan extends Model
 {
     protected $primaryKey = 'id_bahan';
     protected $table = 'bahan';
-    protected $fillable = 'bahan';
+    protected $fillable = ['id_bahan','bahan'];
     public $timestamps = false;
 }

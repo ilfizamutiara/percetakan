@@ -11,18 +11,8 @@
             <h1 class="mt-3">Daftar Produk</h1> 
         </div>
         <div class="card-header">
-             <a href="produk/create" class="btn btn-success my-3"><i class="fas fa-plus"> Produk </i></a>
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="keyword" class="form-control float-right" value="{{ Request::get('keyword') }}" id="keyword" name="keyword" >
-                    <div class="input-group-append" >
-                      <button type="submit" class="btn btn-secondary">
-                        <i class="fas fa-search" ></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <a href="produk/create" class="btn btn-success my-3"><i class="fas fa-plus"> Produk </i></a>      
+        </div>
             @if (session ('status'))
                 <div class="alert alert-success">
                     {{ session ('status')}}

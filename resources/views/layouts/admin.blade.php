@@ -95,9 +95,6 @@
 
     <a id="dropdownSubMenu1"  href="#" data-toggle="dropdown" style=" margin-right: 50px;" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{ Auth::user()->username }} <span class="caret"></span></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-            @if(Auth::user()->id_role ==2)
-              <li><a href="{{url('profile')}}" class="dropdown-item">Profil</a></li>
-            @endif
               <li><a class="dropdown-item" href="{{ route('logout') }}"
               onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
@@ -237,13 +234,13 @@
                 </li>
                 <li class="nav-item">
                 <a href="{{ url('/pesanan/dikirimAdmin') }}" class="nav-link @if(Route::currentRouteName()=='dikirimAdmin') active @endif">
-                    <i class="nav-icon fas fa-cart-arrow-down"></i>
+                    <i class="nav-icon fa fa-truck"></i>
                     <p>Pesanan Dikirim</p>
                   </a>
                 </li>
                 <li class="nav-item">
                 <a href="{{ url('/pesanan/selesaiAdmin') }}" class="nav-link @if(Route::currentRouteName()=='selesaiAdmin') active @endif">
-                    <i class="nav-icon fas fa-cart-arrow-down"></i>
+                    <i class="nav-icon fa fa-gift"></i>
                     <p>Pesanan Selesai</p>
                   </a>
                 </li>

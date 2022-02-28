@@ -10,6 +10,6 @@ class pelanggan extends Model
     //use HasFactory;
     protected $primaryKey = 'id_pelanggan';
    protected $table = 'pelanggan';
-   protected $fillable = ['id_user','nama','jenis_kelamin','alamat','no_hp','foto'];
+   protected $fillable = ['id_pelanggan','id_user','nama','jenis_kelamin','alamat','no_hp','foto'];
    public $timestamps = false;
 }

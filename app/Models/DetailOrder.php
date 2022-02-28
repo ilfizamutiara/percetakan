@@ -10,6 +10,6 @@ class DetailOrder extends Model
    public $increment = false;
    protected $primaryKey = 'id';
    protected $table = 'detail_pesanan';
-   protected $fillable = ['id_pesanan','id_produk','id_percetakan','jumlah','ukuran','dokumen','created_at'];
+   protected $fillable = ['id','id_pesanan','id_produk','id_percetakan','jumlah','ukuran','dokumen','created_at'];
    public $timestamps = false;
 }

@@ -9,6 +9,6 @@ class DetailProduk extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'detail_produk';
-    protected $fillable = ['id_produk','jumlah','ukuran','file'];
+    protected $fillable = ['id','id_produk','jumlah','ukuran','file'];
     public $timestamps = false;
 }

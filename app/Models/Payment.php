@@ -9,6 +9,6 @@ class Payment extends Model
 {
     protected $primaryKey = 'id_konfirmasi';
     protected $table = 'konfirmasi_pembayaran';
-    protected $fillable = ['id_pesanan','total_tagihan','bukti_bayar'];
+    protected $fillable = ['id_konfirmasi','id_pesanan','total_tagihan','bukti_bayar'];
     public $timestamps = false;
 }
