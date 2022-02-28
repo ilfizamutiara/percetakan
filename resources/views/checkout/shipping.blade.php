@@ -38,12 +38,16 @@
                                 <!-- ({{$kurirPengiriman}}) -->
                             </div>
                             <div class="card-body">
-                                <select name="ongkir" class="form-control" id="ongkir"  selected="selected">
-                                    <option value="0" >Pilih Jenis Pengiriman</option>
-                                    @foreach($d as $des)
-                                    <option value="{{$des["cost"][0]["value"]}}" >{{$des["service"]}} * Rp.{{number_format($des["cost"][0]["value"])}} * {{$des["cost"][0]["etd"]}} Hari</option>
-                                    @endforeach
-                                </select>
+                                    <input type="hidden" class="form-control @error('kurir') is-invalid @enderror" id="kurir" 
+                                    name="kurir" value="{{$kurirPengiriman}}">
+                                <div class="col-12 mb-3">
+                                    <select name="ongkir" class="form-control" id="ongkir"  selected="selected">
+                                        <option value="0" >Pilih Jenis Pengiriman</option>
+                                        @foreach($d as $des)
+                                        <option value="{{$des["cost"][0]["value"]}}" >{{$des["service"]}} * Rp.{{number_format($des["cost"][0]["value"])}} * {{$des["cost"][0]["etd"]}} Hari</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="card card-solid  ml-2">

@@ -172,18 +172,6 @@
     <div class="content">
       <div class="container-fluid">
         <div class="content">
-      <!-- <div class="container-fluid">
-          <div class="row">
-              <div class="col-sm-6">
-              </div>
-              <div class="col-sm-12 mt-3">
-                  <ol class="breadcrumb ">
-                      <li class="breadcrumb-item float-right"><a  href="{{ url('/home') }}">Home</a></li>
-                      <li class="breadcrumb-item float-right active">Orderan Saya</li>
-                  </ol>
-              </div>
-          </div>
-      </div> -->
           <div class="col-lg-12 mt-lg-3">
               <!-- Default box -->
             <div class="card card-solid">
@@ -193,14 +181,7 @@
               <div class="row">
                 <div class="col-6 ">
                   <div class="card card-solid mt-3 ml-2">
-                    <div class="card-header" style="background-color:#009688 ">
-                      <h4 style="color:#ffff"><strong>Alamat</strong> 
-                        <a href="{{url('/checkout')}}"><i class="fas fa-edit float-right"> </i> </a></h4>
-                    </div>
-                    <div class="card-body">
-                      <p>Nama : {{$pelanggan->nama}} <br> No HP : {{$pelanggan->no_hp}} <br> Alamat : {{$pelanggan->alamat}} <br>
-                      {{$user->city_name}}, {{$user->name}},{{$user->kode_pos}}</p>
-                    </div>
+                    
                   </div>
                   <div class="card card-solid mt-3 ml-2">
                   <form method="POST" action="{{ url('checkout/pengiriman') }}" align="left" enctype="multipart/form-data">

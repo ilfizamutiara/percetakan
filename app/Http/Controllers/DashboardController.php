@@ -542,7 +542,7 @@ class DashboardController extends Controller
                     $input['ongkir']= $ongkir;
                     $input['pajak'] = $pajakAdmin;
                     $input['total_bayar'] = $totHarga + $ongkir + $pajakAdmin;
-                    $input['kurir'] = $request->input('kurirPengiriman');
+                    $input['kurir'] = $request['kurir'];
             
                     Order::create($input);
                     $idCek = $idPercetakan;
@@ -600,11 +600,6 @@ class DashboardController extends Controller
             }
             $query->each->delete();
         }
-        
-        // $pay = $input['id_pesanan'];
-        // $payment = Payment::create([
-        //     'id_pesanan' => $pay,
-        // ]);
             $cartItem = Keranjang::select('id_keranjang','pelanggan.id_pelanggan','keranjang.id_percetakan','keranjang.id_produk',
                                 'percetakan.nama_toko','produk.gambar','produk.nama_produk','produk.harga','jumlah','ukuran','total')
                                 ->join('produk','keranjang.id_produk','produk.id_produk')
@@ -618,8 +613,6 @@ class DashboardController extends Controller
         return redirect('user/riwayat');
         // return response($jmlToko);
     }
-
-
     public function riwayat(){
         $pesanan = Order::select('id_pesanan','id_produk','id_percetakan','nama','alamat','no_hp','nama_produk','status_pesanan.status')
                               ->join('pesanan','detail_pesanan.id_pesanan','=','pesanan.id_pesanan')
