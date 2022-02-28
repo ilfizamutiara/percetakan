@@ -11,5 +11,5 @@ class Kategori extends Model
     // protected $autoincrement = 'id_kategori';
     protected $table = 'kategori';
     protected $fillable = ['kategori'];
-    public $timestamps = true;
+    public $timestamps = false;
 }
