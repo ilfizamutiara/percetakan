@@ -17,7 +17,7 @@
             <a href="produk/create" class="btn btn-success my-3"><i class="fas fa-plus"> Produk </i></a> 
             </div>
             <div class="col-6">
-              <form class="col-6" action="/produk" method="GET" >
+              <!-- <form class="col-6" action="/produk" method="GET" >
               <div class="input-group input-group-sm">
                 <input type="text" class="form-control" placeholder ="Search" value="{{ Request::get('keyword') }}" id="keyword" name="keyword">            
                 <div class="input-group-append">
@@ -26,7 +26,7 @@
                   </button>
                 </div>
               </div>
-              </form>   
+              </form>    -->
             </div>
           </div>
             
@@ -60,10 +60,10 @@
                         <td>{{$pr->stok}}</td>
                         <td><img class="img-thumbnail" src="{{ asset('/public/uploads/'.$pr->gambar) }}" width="150"/></td>
                         <td>
-                            <a href="{{ url("/produk/edit", $pr->id_produk) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a> | 
+                            <a href="{{ url("/Produk/edit", $pr->id_produk) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a> | 
                               @method('delete') 
                               @csrf 
-                            <a href="{{ url("/produk/delete", $pr->id_produk) }}" 
+                            <a href="{{ url("/Produk/delete", $pr->id_produk) }}" 
                             onclick="return confirm('Apakah Anda ingin menghapus data?')" class="btn btn-danger"> <i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
