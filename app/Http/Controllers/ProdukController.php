@@ -35,7 +35,7 @@ class ProdukController extends Controller
                             ->where('percetakan.id_user', '=', Auth::user()->id)
                             ->where('nama_produk','like',"%".$filterKeyword."%")
                             ->get(); 
-        return view('produk.index',compact('produk'));
+        return view('/produk',compact('produk'));
     }
 
     /**
