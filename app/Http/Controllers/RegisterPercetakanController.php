@@ -79,7 +79,7 @@ class RegisterPercetakanController extends Controller
         }
         else{
             $user = User::all();
-            return redirect('registerpercetakan',compact('user'));  
+            return redirect('registerpercetakan');  
         }
     }
 }

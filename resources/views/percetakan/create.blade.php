@@ -46,6 +46,14 @@
                     @enderror
                 </div></br>
                 <div class="col-6">
+                    <label for="kode_pos" >Kode Pos</label>
+                    <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" id="kode_pos" 
+                    placeholder="Masukkan Kode Pos " name="kode_pos" value="{{old('kode_pos')}}">
+                    @error('kode_pos')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
+                </div></br>
+                <div class="col-6">
                     <label for="no_telp" >No Telp</label>
                     <input type="text" class="form-control @error('no_telp') is-invalid @enderror" id="no_telp" 
                     placeholder="Masukkan No Telp" name="no_telp" value="{{old('no_telp')}}">

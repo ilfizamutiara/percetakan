@@ -95,7 +95,7 @@
                                                 <td id="tampil" onkeyup="sum();">Rp.0</td>
                                             </tr>
                                             <tr>
-                                                <th>Pajak </th>
+                                                <th>Biaya Admin </th>
                                                 <td>:</td>
                                                 <td id="pajak">Rp.{{number_format($adminFree->persentase*($keranjang->sum('total'))/100)}}</td>
                                             </tr>
@@ -134,75 +134,7 @@
         document.getElementById("totbay").innerHTML = "Rp. " + totBayar;
     });
 
-    // $(".total").keyup(function(){
-    //     var totbel = parseInt($("#totbel").val())
-    //     var pajak = parseInt($("#pajak").val())
-    //     // var ongkir = parseInt($("#biongkir").val())
-
-    //     var totbay = totbel + pajak ;
-    //     $("#totbay").attr("value",totbay)
-    // });
-
-            // $(document).ready(function(){
-            //     total();
-            //     $('#totbel').on('change',(function() {
-            //         total();
-            //     });
-            //     $('#tampil').on('change',(function() {
-            //         total();
-            //     });   
-            //     $('#pajak').on('change',(function() {
-            //         total();
-            //     });               
-            // });
-
-            // function total()
-            // {
-            //     var sum = 0;
-            //     $('.total').each(function() {
-            //         var totbel = $(this).find('#totbel').val();
-            //         var ongkir = $(this).find('#tampil').val();
-            //         var pajak = $(this).find('#pajak').val();
-            //         var amount = (totbel+ongkir+pajak)
-            //         sum+=amount;
-            //         $(this).find('#totbay').text(''+amount);
-            //     });
-            //     $('.total').text(sum);
-            // }
-
-    // function sum(){
-    //     var totbel = parseInt(document.getElementById('totbel')).value;
-    //     var   ongkir = parseInt(document.getElementById('ongkir')).value;
-    //     var   pajak = parseInt(document.getElementById('pajak')).value;
-            
-    //     var totbayar = totbel + ongkir + pajak;
-    //     document.getElementById('totbay') = totbayar;
-    // }
-
-//     $('#ongkir').on('change',function(){
-
-// var ongkir = document.getElementById("ongkir").value
-//     document.getElementById("tampil").innerHTML="Rp. "+ongkir
-
-
-// });
-
-//     var totbel = document.getElementById("totbel"),
-//             ongkir = document.getElementById("ongkir"),
-//             pajak = document.getElementById("pajak").value
-            
-//         var totbay = totbel + ongkir + pajak;
-    // $('#ongkir').on('click',function(){
-    //     var ongkir = parseInt($(this).attr("ongkir"));
-    //     $('#tampil').text('Rp. '+format_rupiah(ongkir));
-    // });
-        
-                
-    // function format_rupiah(ongkir){
-    //     var  reverse = ongkir.toString().split('').reverse().join(''),
-    //          ribuan = reverse.match(/\d{1,3}/g);
-    //      return ribuan	= ribuan.join('.').split('').reverse().join('');
-    // }
+  
 </script>
 @stop
 

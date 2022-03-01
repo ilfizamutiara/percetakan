@@ -21,7 +21,8 @@
                                         <a href="{{ url("/user/detailproduk", $data->id_produk) }}" style="text-center">
                                           <img class="img-thumbnail" src="{{ asset('/public/uploads/'.$data->gambar) }}"style="height: 150px;" />
                                         <div class="card-body">
-                                            <h6 class="text-center">{{ $data->nama_produk }}<br><h6 class="text-center">{{ $data->bahan }}</h6></h6></a>                                        </div>
+                                            <h6 class="text-center">{{ $data->nama_produk }}<br><h6 class="text-center">{{ $data->bahan }}</h6>
+                                          <br><h6 class="text-center">RP.{{number_format($data->harga ) }}</h6></h6></a>                                        </div>
                                     </div>
                                 </div>
                                 @endforeach

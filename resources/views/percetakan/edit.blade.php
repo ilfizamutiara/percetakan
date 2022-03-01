@@ -56,6 +56,14 @@
                     @enderror
                 </div></br>
                 <div class="col-6">
+                    <label for="kode_pos" >Kode Pos </label>
+                    <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" id="kode_pos" 
+                    name="kode_pos" value="{{$user->kode_pos}}">
+                    @error('kode_pos')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
+                </div></br>
+                <div class="col-6">
                     <label for="foto" >Gambar</label>
                     <div class="input-group">
                         <img class="img-gambar" src="{{ asset('/upload/percetakan-foto/'.$user->foto) }}" width="150px"/>
