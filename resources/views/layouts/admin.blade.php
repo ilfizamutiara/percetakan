@@ -79,17 +79,6 @@
         </div>
       </li>
     </ul>
-<!--     
-    <form class="form-inline ml-4">
-      <div class="input-group input-group-sm">
-        <input class="form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form> -->
     <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">
 
@@ -106,15 +95,6 @@
             </ul>                                                                              
     </li>
     </ul>
-    <!--
-    <ul class="navbar-nav">
-      <li class="nav-item">
-    <div class="image">cost
-       <img src="dist/img/user2-160x160.jpg" class="brand-image img-circle elevation-3" alt="User Image" width="50%">
-    </div>
-      </li>
-    </ul>
-    -->
 
   </nav>
   <!-- /.navbar -->
@@ -133,8 +113,6 @@
       <nav class="mt-2 ">
         @if(Auth::user()->id_role ==1)
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-              <!-- Add icons to the links using the .nav-icon class
-                  with font-awesome or any other icon font library -->
               <li class="nav-item menu-open">
                 <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-th"></i>
@@ -144,12 +122,6 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                <!-- <li class="nav-item">
-                  <a href="{{ url('/DataUser') }}" class="nav-link @if(Route::currentRouteName()=='DataUser') active @endif">
-                      <i class="nav-icon fa fa-users"></i>
-                      <p>Data User</p>
-                    </a>
-                  </li> -->
                 <li class="nav-item">
                   <a href="{{ url('/percetakan') }}" class="nav-link @if(Route::currentRouteName()=='percetakan') active @endif">
                       <i class="nav-icon fa fa-store"></i>
@@ -198,15 +170,15 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ url('/shop_payment/penjualan-toko') }}" class="nav-link @if(Route::currentRouteName()=='transaksi') active @endif">
-                    <i class="nav-icon fa fa-book"></i>
-                      <p>Penjualan toko</p>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a href="{{ url('/shop_payment/laporan-pembayaran') }}" class="nav-link @if(Route::currentRouteName()=='laporan-pembayaran') active @endif">
                     <i class="nav-icon fa fa-book"></i>
                       <p>Laporan Pembayaran</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ url('/shop_payment/penjualan-toko') }}" class="nav-link @if(Route::currentRouteName()=='transaksi') active @endif">
+                    <i class="nav-icon fa fa-book"></i>
+                      <p>Penjualan toko</p>
                   </a>
                 </li>
                 </ul>

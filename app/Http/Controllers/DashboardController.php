@@ -279,7 +279,7 @@ class DashboardController extends Controller
                             ->where('users.id',Auth::User()->id)
                             ->first();
         $province = Province::get();
-        $kurir = kurir::all();
+        $kurir = kurir::get();
         $city = City::get();
         
         
