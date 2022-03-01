@@ -33,7 +33,6 @@ Route::get('/', function (Request $request) {
 Route::get('/seller', function(){
         return view('seller');
 })->name('seller');
-
 // Route::get('/laporan-penjualan', function(){
 //     return view('laporan-penjualan');
 // })->name('laporan-penjualan');
@@ -79,6 +78,7 @@ Route::post('bahan', 'App\Http\Controllers\BahanController@store')->name('bahan'
 Route::post('bahan/{id_bahan}', 'App\Http\Controllers\BahanController@update');
 Route::get('bahan/edit/{id_bahan}', 'App\Http\Controllers\BahanController@edit')->name('bahan');
 Route::get('bahan/delete/{id_bahan}', 'App\Http\Controllers\BahanController@destroy');
+
 
 //Kategori Produk
 Route::get('kategori', 'App\Http\Controllers\KategoriController@index')->name('kategori')->middleware('role:admin');

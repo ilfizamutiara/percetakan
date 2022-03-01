@@ -11,7 +11,7 @@ use App\Models\DetailProduk;
 use App\Models\Keranjang;
 use App\Models\DetailOrder;
 use App\Models\Order;
-use App\Models\Kurir;
+use App\Models\kurir;
 use App\Models\Upload;
 use App\Models\City;
 use App\Models\Province;
