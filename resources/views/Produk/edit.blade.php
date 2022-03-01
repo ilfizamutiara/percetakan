@@ -9,7 +9,7 @@
         <div class="card-header">
             <h1 class="mt-3">Form Edit Data Produk </h1>
         </div>
-            <form method="POST"  action="{{ url('/produk', $produk->id_produk) }}" enctype="multipart/form-data"> 
+            <form method="POST"  action="{{ url('/Produk', $produk->id_produk) }}" enctype="multipart/form-data"> 
                 @csrf
                 <div class="card-header">
                 <div class="card-body">

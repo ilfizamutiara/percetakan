@@ -14,7 +14,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col-6">
-            <a href="produk/create" class="btn btn-success my-3"><i class="fas fa-plus"> Produk </i></a> 
+            <a href="Produk/create" class="btn btn-success my-3"><i class="fas fa-plus"> Produk </i></a> 
             </div>
             <div class="col-6">
               <!-- <form class="col-6" action="/produk" method="GET" >
