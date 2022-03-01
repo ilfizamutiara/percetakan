@@ -90,12 +90,12 @@ Route::get('kategori/delete/{id_kategori}', 'App\Http\Controllers\KategoriContro
 
 Route::get('/pelanggan', 'App\Http\Controllers\PelangganController@index')->name('pelanggan')->middleware('role:admin');
 //Produk
-Route::get('produk', 'App\Http\Controllers\ProdukController@index')->name('produk.index')->middleware('role:percetakan');
-Route::get('produk/create', 'App\Http\Controllers\ProdukController@create')->name('produk');
-Route::post('produk', 'App\Http\Controllers\ProdukController@store')->name('produk');
-Route::post('produk/{id_produk}', 'App\Http\Controllers\ProdukController@update')->name('produk');
-Route::get('produk/edit/{id_produk}', 'App\Http\Controllers\ProdukController@edit')->name('produk');
-Route::get('produk/delete/{id_produk}', 'App\Http\Controllers\ProdukController@destroy')->name('produk');
+Route::get('Produk', 'App\Http\Controllers\ProdukController@index')->name('produk.index')->middleware('role:percetakan');
+Route::get('Produk/create', 'App\Http\Controllers\ProdukController@create')->name('produk');
+Route::post('Produk', 'App\Http\Controllers\ProdukController@store')->name('produk');
+Route::post('Produk/{id_produk}', 'App\Http\Controllers\ProdukController@update')->name('produk');
+Route::get('Produk/edit/{id_produk}', 'App\Http\Controllers\ProdukController@edit')->name('produk');
+Route::get('Produk/delete/{id_produk}', 'App\Http\Controllers\ProdukController@destroy')->name('produk');
 
 //daftarpesanan pada admin dan toko
 Route::group(['middleware' => 'auth'], function () {
