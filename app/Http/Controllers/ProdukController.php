@@ -52,7 +52,7 @@ class ProdukController extends Controller
         $satuan = satuan_produk::all();
         $bahan = Bahan::all();
         $kategori = Kategori::all();
-        return view('produk.create', compact('produk','satuan','bahan','kategori'))->with('Status','Data berhasil ditambahkan!');
+        return view('Produk.create', compact('produk','satuan','bahan','kategori'))->with('Status','Data berhasil ditambahkan!');
     }
 
     /**
@@ -101,7 +101,7 @@ class ProdukController extends Controller
             // 'foto' => $request['foto'],
             'gambar' => $fileName,
         ]);
-        return redirect('/produk')->with('status','Produk berhasil ditambah!');
+        return redirect('/Produk')->with('status','Produk berhasil ditambah!');
         // $produk = produk::create($input);
         // return redirect('/produk');
     }
@@ -112,7 +112,7 @@ class ProdukController extends Controller
         $satuan = satuan_produk::all();
         $bahan = Bahan::all();
         $kategori = Kategori::all();
-        return view("produk/edit", compact('produk','satuan','bahan','kategori'))->with("produk", $produk);
+        return view("Produk/edit", compact('produk','satuan','bahan','kategori'))->with("produk", $produk);
     }
 
     public function update(Request $request, $id_produk)
@@ -159,7 +159,7 @@ class ProdukController extends Controller
             ]);
         }
 
-        return redirect('/produk')-> with('status', 'Data Produk berhasil diupdate!');
+        return redirect('/Produk')-> with('status', 'Data Produk berhasil diupdate!');
     }
 
     public function destroy($id_produk)
@@ -170,9 +170,9 @@ class ProdukController extends Controller
         if($cek==0){
             $produk = produk::find($id_produk);
             $produk->delete();
-            return redirect('/produk')-> with('status', 'Data Produk berhasil dihapus!');
+            return redirect('/Produk')-> with('status', 'Data Produk berhasil dihapus!');
         }else{
-            return redirect('/produk')-> with('status', 'Data Sedang digunakan!');
+            return redirect('/Produk')-> with('status', 'Data Sedang digunakan!');
         }
     }
 }
