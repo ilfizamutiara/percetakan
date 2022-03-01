@@ -262,7 +262,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('/produk') }}" class="nav-link @if(Route::currentRouteName()=='produk') active @endif">
+                    <a href="{{ url('/Produk') }}" class="nav-link @if(Route::currentRouteName()=='produk') active @endif">
                       <i class="nav-icon fa fa-puzzle-piece"></i>
                         <p>produk</p>
                     </a>
