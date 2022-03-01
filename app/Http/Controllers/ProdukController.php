@@ -23,9 +23,9 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $filterKeyword = $request->keyword;
+        // $filterKeyword = $request->keyword;
         $produk= produk::select('id_produk','produk.id_percetakan','bahan','produk.id_kategori','kategori','nama_produk','satuan','harga','stok','estimasi_pengerjaan','keterangan','gambar')
                             ->join('satuan_produk','produk.id_satuan_produk','=','satuan_produk.id_satuan_produk')
                             ->join('bahan','produk.id_bahan','bahan.id_bahan')
@@ -33,7 +33,7 @@ class ProdukController extends Controller
                             ->join('percetakan','produk.id_percetakan','percetakan.id_percetakan')
                             ->join('users','percetakan.id_user','users.id')
                             ->where('percetakan.id_user', '=', Auth::user()->id)
-                            ->where('nama_produk','like',"%".$filterKeyword."%")
+                            // ->where('nama_produk','like',"%".$filterKeyword."%")
                             ->get(); 
         return view('produk.index',compact('produk'));
     }
