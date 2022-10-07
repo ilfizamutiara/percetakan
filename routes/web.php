@@ -47,10 +47,10 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 //      return 'Dashboard';
 //  })->name('dashboard');
 
-Route::middleware('role:admin')->get('/dashboardAdmin', 'App\Http\Controllers\DashboardAdminController@index')->name('dashboardAdmin');
-Route::middleware('role:percetakan')->get('/dashboardPercetakan', 'App\Http\Controllers\DashboardPercetakanController@index')->name('dashboardPercetakan');
+Route::middleware(['auth','verified'])->get('/dashboardAdmin', 'App\Http\Controllers\DashboardAdminController@index')->name('dashboardAdmin');
+Route::middleware(['auth','verified'])->get('/dashboardPercetakan', 'App\Http\Controllers\DashboardPercetakanController@index')->name('dashboardPercetakan');
 Route::middleware('role:percetakan')->get('/layouts/admin', 'App\Http\Controllers\DashboardPercetakanController@addfoto');
-Route::get('/registerpercetakan', 'App\Http\Controllers\PercetakanController@create')->name('registerpercetakan');
+// Route::get('/registerpercetakan', 'App\Http\Controllers\PercetakanController@create')->name('registerpercetakan');
 
 //percetakan
 Route::get('percetakan', 'App\Http\Controllers\PercetakanController@index')->name('percetakan')->middleware('role:admin');
@@ -174,7 +174,7 @@ Route::get('user/keranjang/delete/{id_keranjang}', 'App\Http\Controllers\Dashboa
 Route::get('user/keranjang/delete/{id_keranjang}', 'App\Http\Controllers\DashboardController@hapus')->name('user')->middleware('auth');
 
 Route::get('registerpercetakan', 'App\Http\Controllers\RegisterPercetakanController@create')->name('registerpercetakan');
-Route::post('registerpercetakan', 'App\Http\Controllers\RegisterPercetakanController@store')->name('registerpercetakan');
+Route::post('registerpercetakan', 'App\Http\Controllers\RegisterPercetakanController@store');
 
 //Profil
 Route::group(['middleware' => 'auth'], function () {
@@ -206,6 +206,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('shop_payment/adminFree', 'App\Http\Controllers\ShopPaymentController@adminFree')->name('shop_payment/adminFree');
 
 });
+
+Auth::routes(['verify'=>true]);
 
 
 // Route::get('profile','App\Http\Controllers\ProfilController@edit')->name('profile');

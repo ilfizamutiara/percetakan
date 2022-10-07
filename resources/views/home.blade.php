@@ -20,13 +20,13 @@
                       </ol>
                       <div class="carousel-inner">
                         <div class="carousel-item active">
-                          <img src="dist/img/slide1.png" class="d-block w-100" alt="gambar">
+                          <img src="{{url('dist/img/slide1.png')}}" class="d-block w-100" alt="gambar">
                         </div>
                         <div class="carousel-item">
-                          <img src="dist/img/slide2.png" class="d-block w-100" alt="gambar">
+                          <img src="{{url('dist/img/slide2.png')}}" class="d-block w-100" alt="gambar">
                         </div>
                         <div class="carousel-item">
-                          <img src="dist/img/slide3.png" class="d-block w-100" alt="gambar">
+                          <img src="{{url('dist/img/slide3.png')}}" class="d-block w-100" alt="gambar">
                         </div>
                           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

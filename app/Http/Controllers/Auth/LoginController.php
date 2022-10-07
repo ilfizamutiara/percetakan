@@ -47,7 +47,7 @@ class LoginController extends Controller
         elseif($user->hasRole('percetakan')){
             return redirect()->route('dashboardPercetakan');
         }
-        else{
+        elseif($user->hasRole('pelanggan')){
             return redirect()->route('home');
         }
 

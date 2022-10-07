@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr;
 use Auth;
+use Illuminate\Validation\Rules\Password;
+
 
 
 class RegisterController extends Controller
@@ -55,8 +57,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required','string','email','max:255'],
+            'username' => ['required','regex:/^[.\w]+$/'],
+            'password' => ['required', 'string','confirmed',Password::min(8)
+            ->mixedCase()
+            ->numbers()],
         ]);
     }
 

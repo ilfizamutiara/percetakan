@@ -32,7 +32,8 @@
             @foreach($detail as $dt)
             {{csrf_field()}}
             <div class="col-12 col-sm-6" align="left">
-              <h2 class="my-3">{{$dt->nama_produk}} {{$dt->bahan}}</h2>
+              <h2 class="my-3">{{$dt->nama_toko}} </h2>
+              <h4 class="my-3">{{$dt->nama_produk}} {{$dt->bahan}}</h4>
               <h4 class="my-3">Rp.{{number_format($dt->harga)}}/{{$dt->satuan}}</h4>
               <h6 class="my-3">{{$dt->estimasi_pengerjaan}} Pengerjaan</h6>
               <h6 class="my-3">stok : {{$dt->stok}}</h6>
